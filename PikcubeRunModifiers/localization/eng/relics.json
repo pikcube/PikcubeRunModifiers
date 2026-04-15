@@ -1,0 +1,7 @@
+{
+  "PIKCUBERUNMODIFIERS-GADGET.description": "{WhenGadget.StringValue}, {WhatGadget.StringValue}.\nAt the end of each combat, [gold]Scrap[/gold] a card to change what this relic does.",
+  "PIKCUBERUNMODIFIERS-GADGET.flavor": "A lost relic of a former inventor. Longs to be endlessly tinkered with.",
+  "PIKCUBERUNMODIFIERS-GADGET.scrapKeyword": "Choose one of three cards to remove from your deck. Favors cards you played in the most recent combat.",
+  "PIKCUBERUNMODIFIERS-GADGET.scrapKeywordName": "Scrap",
+  "PIKCUBERUNMODIFIERS-GADGET.title": "Gadget"
+}
