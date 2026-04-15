@@ -30,7 +30,8 @@ public class PerfectLethal : PikcubeModifier
         }
         if (props.IsPoweredAttack() || cardSource is Omnislice)
         {
-            await CreatureCmd.Damage(choiceContext, dealer, new DamageVar(result.OverkillDamage, ValueProp.Unpowered | ValueProp.SkipHurtAnim), null, null);
+            DamageVar reflectedDamage = new(result.OverkillDamage, ValueProp.Unpowered | ValueProp.SkipHurtAnim);
+            await CreatureCmd.Damage(choiceContext, dealer, reflectedDamage, null, null);
         }
     }
 }
