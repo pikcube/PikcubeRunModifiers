@@ -49,9 +49,9 @@ namespace PikcubeRunModifiers
             CustomRunManager.Register<AboveTheLaw>(CustomRunType.Good);
 
 
-            CustomRunManager.Register<BlahajEnjoyer>(CustomRunType.Bad);
             CustomRunManager.Register<FourForFourModifier>(CustomRunType.Bad);
             CustomRunManager.Register<FiftyFifty>(CustomRunType.Bad);
+            CustomRunManager.Register<BlahajEnjoyer>(CustomRunType.Bad);
             CustomRunManager.Register<CurseOfGreedModifier>(CustomRunType.Bad);
             CustomRunManager.Register<TheIGotARockModifier>(CustomRunType.Bad);
             CustomRunManager.Register<OneOfEverything>(CustomRunType.Bad);

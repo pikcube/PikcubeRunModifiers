@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Reflection;
+using System.Text.Json;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,6 +17,7 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
@@ -27,7 +29,17 @@ public abstract class TheAbstractLaw : PikcubeModifier
     public abstract Func<CardModel, bool> Filter { get;}
 
     [SavedProperty]
-    public SerializableCard? LawCardBlueprint { get; set; }
+    public string DicKeys {
+        get => JsonSerializer.Serialize(LawCardBlueprint);
+        set => LawCardBlueprint = JsonSerializer.Deserialize<Dictionary<ulong, SerializableCard>>(value) ?? throw new NoNullAllowedException();
+    }
+
+    protected override void AfterRunCreated(RunState runState)
+    {
+        LawCardBlueprint.Clear();
+    }
+
+    public Dictionary<ulong, SerializableCard> LawCardBlueprint { get; set; } = [];
 
     public override Func<Task>? GenerateNeowOption(EventModel eventModel)
     {
@@ -61,19 +73,20 @@ public abstract class TheAbstractLaw : PikcubeModifier
             await CardCmd.Transform(strike, p.RunState.CreateCard(added.CanonicalInstance, p), CardPreviewStyle.GridLayout);
             await CardCmd.Transform(defend, p.RunState.CreateCard(added.CanonicalInstance, p), CardPreviewStyle.GridLayout);
 
-            LawCardBlueprint = p.RunState.CreateCard(added.CanonicalInstance, p).ToSerializable();
+            LawCardBlueprint.Add(p.NetId, p.RunState.CreateCard(added.CanonicalInstance, p).ToSerializable());
         };
     }
 
     public override bool TryModifyRewardsLate(Player player, List<Reward> rewards, AbstractRoom? room)
     {
         bool modified = false;
-        if (LawCardBlueprint is null)
+
+        if (!LawCardBlueprint.TryGetValue(player.NetId, out SerializableCard? blueprint))
         {
-            return false;
+            return modified;
         }
 
-        CardModel lawCard = CardModel.FromSerializable(LawCardBlueprint);
+        CardModel lawCard = CardModel.FromSerializable(blueprint);
 
         foreach (CardReward cardReward in rewards.OfType<CardReward>().ToArray())
         {
@@ -102,12 +115,12 @@ public abstract class TheAbstractLaw : PikcubeModifier
     public override bool TryModifyCardRewardAlternatives(Player player, CardReward cardReward,
         List<CardRewardAlternative> alternatives)
     {
-        if (LawCardBlueprint is null)
+        if (!LawCardBlueprint.TryGetValue(player.NetId, out SerializableCard? blueprint))
         {
             return false;
         }
 
-        CardModel lawCard = CardModel.FromSerializable(LawCardBlueprint);
+        CardModel lawCard = CardModel.FromSerializable(blueprint);
 
         CardRewardAlternative? reroll = alternatives.FirstOrDefault(alt => alt.OptionId == "REROLL");
         if (reroll is null)

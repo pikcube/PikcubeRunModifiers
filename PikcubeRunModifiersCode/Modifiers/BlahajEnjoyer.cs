@@ -2,5 +2,5 @@
 
 public class BlahajEnjoyer : PikcubeModifier
 {
-    
+    //todo: Unartifact this modifier you dingus
 }
