@@ -7,6 +7,11 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 public class Dig : PikcubeModifier
 {
+    static Dig()
+    {
+        MainFile.RelicSpawnManager.RegisterRule<Shovel>(runState => !runState.Modifiers.Any(m => m is Dig));
+    }
+    
     protected override void AfterRunCreated(RunState runState)
     {
         foreach (Player p in runState.Players)

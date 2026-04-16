@@ -14,28 +14,40 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 public class TheILoveVakuuModifier : PikcubeModifier
 {
     private Dictionary<ActModel, RunState> ActsToModify { get; } = [];
-    private Queue<RunState> RunStateQueue { get; } = [];
     private List<EventOption> ModifierOptions { get; } = [];
     private IReadOnlyList<EventOption> OriginalVakuuOptions { get; set; } = [];
 
     protected override void AfterRunCreated(RunState runState)
     {
-        RunStateQueue.Clear();
         ActsToModify.Clear();
+        ModifierOptions.Clear();
         foreach (ActModel act in RunState.Acts)
         {
             ActsToModify.Add(act, runState);
         }
+        LoveVakuuPatches.ModifyAncientForAct -= ILoveVakuuPatch_ModifyAncientForAct;
         LoveVakuuPatches.ModifyAncientForAct += ILoveVakuuPatch_ModifyAncientForAct;
+        LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
+        LoveVakuuPatches.ModifyGenerateInitialOptions += LoveVakuuPatches_ModifyGenerateInitialOptions;
+    }
+
+    protected override void AfterRunLoaded(RunState runState)
+    {
+        ActsToModify.Clear();
+        ModifierOptions.Clear();
+        LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
         LoveVakuuPatches.ModifyGenerateInitialOptions += LoveVakuuPatches_ModifyGenerateInitialOptions;
     }
 
     private void LoveVakuuPatches_ModifyGenerateInitialOptions(object? sender, LoveVakuuPatches.ModifyInitialArgs e)
     {
-        RunState runState = RunStateQueue.Dequeue();
+        if (RunState.CurrentRoomCount > 1)
+        {
+            LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
+            return;
+        }
         ModifierOptions.Clear();
-        
-        foreach (ModifierModel modifier in runState.Modifiers)
+        foreach (ModifierModel modifier in RunState.Modifiers)
         {
             Func<Task>? option = modifier.GenerateNeowOption(e.Vakuu);
             if (option is null)
@@ -47,16 +59,13 @@ public class TheILoveVakuuModifier : PikcubeModifier
             ModifierOptions.Add(new EventOption(e.Vakuu, () => OnChosen(option, index, e.Vakuu), modifier.NeowOptionTitle, modifier.NeowOptionDescription, modifier.Id.Entry, modifier.HoverTips));
         }
 
-        if (ModifierOptions.Count > 0)
+        if (ModifierOptions.Count <= 0)
         {
-            OriginalVakuuOptions = e.NewList;
-            e.NewList = [ModifierOptions[0]];
+            return;
         }
-
-        if (RunStateQueue.Count == 0)
-        {
-            LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
-        }
+        OriginalVakuuOptions = e.NewList;
+        e.NewList = [ModifierOptions[0]];
+        LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
     }
 
     private async Task OnChosen(Func<Task> option, int index, Vakuu vakuu)
@@ -93,8 +102,6 @@ public class TheILoveVakuuModifier : PikcubeModifier
         {
             Vakuu ancientEventModel = ModelDb.AncientEvent<Vakuu>();
             e.NewAncient = ancientEventModel;
-            RunStateQueue.Enqueue(runState);
-
         }
 
         if (ActsToModify.Count == 0)

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Powers;
@@ -13,6 +14,20 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 [UsedImplicitly]
 public class CurseOfGreedModifier : PikcubeModifier
 {
+    static CurseOfGreedModifier()
+    {
+        MainFile.RelicSpawnManager.RegisterRule<MoltenEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<ToxicEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<FrozenEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<Whetstone>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<WarPaint>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<StoneCracker>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<RazorTooth>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<Bellows>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<Pomander>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<LavaLamp>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+    }
+
     public override bool ShouldReceiveCombatHooks => true;
 
     protected override void AfterRunCreated(RunState runState)

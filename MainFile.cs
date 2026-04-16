@@ -1,7 +1,6 @@
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Models.Relics;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
@@ -12,6 +11,8 @@ namespace PikcubeRunModifiers
     {
         public const string ModId = "PikcubeRunModifiers"; //Used for resource filepath
 
+        public static RelicSpawnManager RelicSpawnManager { get; set; } = new();
+
         public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } = new(ModId, MegaCrit.Sts2.Core.Logging.LogType.Generic);
 
         public static void Initialize()
@@ -19,23 +20,6 @@ namespace PikcubeRunModifiers
             Harmony harmony = new(ModId);
 
             harmony.PatchAll();
-
-            RelicSpawnManager relicSpawnManager = new();
-
-            relicSpawnManager.RegisterRule<Shovel>(runState => !runState.Modifiers.Any(m => m is Dig));
-
-            relicSpawnManager.RegisterRule<PetrifiedToad>(runState => !runState.Modifiers.Any(m => m is TheIGotARockModifier));
-
-            relicSpawnManager.RegisterRule<MoltenEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<ToxicEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<FrozenEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<Whetstone>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<WarPaint>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<StoneCracker>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<RazorTooth>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<Bellows>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<Pomander>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-            relicSpawnManager.RegisterRule<LavaLamp>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
 
             CustomRunManager.Register<Dig>(CustomRunType.Good);
             CustomRunManager.Register<GadgetsModifier>(CustomRunType.Good);
@@ -45,9 +29,9 @@ namespace PikcubeRunModifiers
             CustomRunManager.Register<MyTrueForm>(CustomRunType.Good);
             CustomRunManager.Register<PraiseSnecko>(CustomRunType.Good);
             CustomRunManager.Register<TexasHoldem>(CustomRunType.Good);
+            CustomRunManager.Register<TheLuckyCarder>(CustomRunType.Good);
             CustomRunManager.Register<TheLaw>(CustomRunType.Good);
             CustomRunManager.Register<AboveTheLaw>(CustomRunType.Good);
-
 
             CustomRunManager.Register<FourForFourModifier>(CustomRunType.Bad);
             CustomRunManager.Register<FiftyFifty>(CustomRunType.Bad);

@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using JetBrains.Annotations;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -8,6 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
+[UsedImplicitly]
 public class PerfectLethal : PikcubeModifier
 {
     public override bool ShouldReceiveCombatHooks => true;

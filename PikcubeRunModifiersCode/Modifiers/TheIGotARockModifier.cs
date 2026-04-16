@@ -11,6 +11,11 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 public class TheIGotARockModifier : PikcubeModifier
 {
+    static TheIGotARockModifier()
+    {
+        MainFile.RelicSpawnManager.RegisterRule<PetrifiedToad>(runState => !runState.Modifiers.Any(m => m is TheIGotARockModifier));
+    }
+
     protected override void AfterRunCreated(RunState runState)
     {
         foreach (Player p in runState.Players)
