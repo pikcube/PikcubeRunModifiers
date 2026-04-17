@@ -3,38 +3,44 @@
     //Mostly utilities to get asset paths.
     public static class StringExtensions
     {
-        public static string ImagePath(this string path)
+        extension(string path)
         {
-            return Path.Join(MainFile.ModId, "images", path);
-        }
+            
 
-        public static string CardImagePath(this string path)
-        {
-            return Path.Join(MainFile.ModId, "images", "card_portraits", path);
-        }
-        public static string BigCardImagePath(this string path)
-        {
-            return Path.Join(MainFile.ModId, "images", "card_portraits", "big", path);
-        }
+            public string ImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", path);
+            }
 
-        public static string PowerImagePath(this string path)
-        {
-            return Path.Join(MainFile.ModId, "images", "powers", path);
-        }
+            public string CardImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", "card_portraits", path);
+            }
 
-        public static string BigPowerImagePath(this string path)
-        {
-            return Path.Join(MainFile.ModId, "images", "powers", "big", path);
-        }
+            public string BigCardImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", "card_portraits", "big", path);
+            }
 
-        public static string RelicImagePath(this string path)
-        {
-            return Path.Join(MainFile.ModId, "images", "relics", path);
-        }
+            public string PowerImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", "powers", path);
+            }
 
-        public static string BigRelicImagePath(this string path)
-        {
-            return Path.Join(MainFile.ModId, "images", "relics", "big", path);
+            public string BigPowerImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", "powers", "big", path);
+            }
+
+            public string RelicImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", "relics", path);
+            }
+
+            public string BigRelicImagePath()
+            {
+                return Path.Join(MainFile.ModId, "images", "relics", "big", path);
+            }
         }
     }
 }

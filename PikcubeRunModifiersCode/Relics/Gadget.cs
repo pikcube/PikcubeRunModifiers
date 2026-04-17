@@ -17,6 +17,7 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using Pikcube.Common.Utility;
+using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using System.Data;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
@@ -351,22 +352,22 @@ public class Gadget : PikcubeRunModifiersRelic
         {
             case CardRarity.Ancient:
                 whenGadget = "Does nothing";
-                whatGadget = "Ancient cards are unscrappable";
+                whatGadget = "Ancient cards are unscrappable.";
                 currentGadgetCardHoverTip = null;
                 return;
             case CardRarity.Curse:
                 whenGadget = "Does nothing";
-                whatGadget = "Curse cards are unscrappable";
+                whatGadget = "Curse cards are unscrappable.";
                 currentGadgetCardHoverTip = null;
                 return;
             case CardRarity.Status:
                 whenGadget = "Does nothing";
-                whatGadget = "Status cards are unscrappable";
+                whatGadget = "Status cards are unscrappable.";
                 currentGadgetCardHoverTip = null;
                 return;
             case CardRarity.Quest:
                 whenGadget = "Does nothing";
-                whatGadget = "Quest cards are unscrappable";
+                whatGadget = "Quest cards are unscrappable.";
                 currentGadgetCardHoverTip = null;
                 return;
             case CardRarity.None:
@@ -381,35 +382,38 @@ public class Gadget : PikcubeRunModifiersRelic
                 if (card.Keywords.Contains(CardKeyword.Unplayable))
                 {
                     whenGadget = "Does nothing";
-                    whatGadget = "this card can't be played";
+                    whatGadget = "this card can't be played.";
                     return;
                 }
 
                 if (card.Type == CardType.Power || card.Keywords.Contains(CardKeyword.Exhaust))
                 {
                     whenGadget = "At the start of combat";
-                    whatGadget = $"add a copy of [gold]{card.TitleLocString.GetFormattedText()}[/gold] to your hand. " +
-                                 $"It [gold]Retains[/gold] and is free to play";
+                    whatGadget = $"add a copy of [gold]{card.GetTrueTitle()}[/gold] to your hand. " +
+                                 $"It [gold]Retains[/gold] and is free to play.";
                     return;
                 }
 
                 if (card.EnergyCost.CostsX || card.HasStarCostX)
                 {
                     whenGadget = "At the start of each turn";
-                    whatGadget = $"play [gold]{card.TitleLocString.GetFormattedText()}[/gold] with X = Turn Number";
+                    whatGadget = $"play [gold]{card.GetTrueTitle()}[/gold] with X = Turn Number.";
                     return;
                 }
 
                 whenGadget = "At the start of each turn";
-                whatGadget = $"play [gold]{card.TitleLocString.GetFormattedText()}[/gold]";
+                whatGadget = $"play [gold]{card.GetTrueTitle()}[/gold]";
                 return;
             case null:
                 whenGadget = "Does nothing";
-                whatGadget = "at the end of combat, scrap a card to make a gadget";
+                whatGadget = "at the end of combat, scrap a card to make a gadget.";
                 currentGadgetCardHoverTip = null;
                 return;
             default:
-                throw new ArgumentOutOfRangeException(nameof(card));
+                whenGadget = "Does nothing";
+                whatGadget = $"{nameof(card.Type)} cards are unscrappable due to not being a know type.";
+                currentGadgetCardHoverTip = null;
+                return;
         }
 
 

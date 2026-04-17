@@ -1,10 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using JetBrains.Annotations;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
+[UsedImplicitly]
 public class Dig : PikcubeModifier
 {
     static Dig()

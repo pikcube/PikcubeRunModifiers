@@ -11,7 +11,6 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 public static class TipPatch
 {
     [UsedImplicitly]
-
     public static IEnumerable<IHoverTip> Postfix(IEnumerable<IHoverTip> __result, CardModel __instance)
     {
         return !RunManager.Instance.IsInProgress || __instance.IsCanonical || __instance.Owner?.Relics.Any(r => r is Gadget) is true ? __result.Append(new HoverTip(Gadget.Canonical.Title, Gadget.GetGadgetTip(__instance))) : __result;

@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using Pikcube.Common.Utility;
@@ -18,6 +19,7 @@ public static class ReplaceMerchantRemovalPatch
         ModifyMerchantCardRemoval = null;
     }
 
+    [UsedImplicitly]
     public static bool Prefix(ref Task<bool> __result, Player player, ref int goldCost, ref bool cancelable)
     {
         ModifyMerchantRemovalArgs args = new(__result, player, goldCost, cancelable);
