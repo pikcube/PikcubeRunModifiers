@@ -5,13 +5,6 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 
 public static class CardModelExtensions
 {
-    extension<T>(T card) where T : CardModel
-    {
-        public string GetTrueTitle()
-        {
-            return card.IsUpgraded
-                ? $"{card.TitleLocString.GetFormattedText()}+"
-                : card.TitleLocString.GetFormattedText();
-        }
-    }
+    public static string GetTrueTitle<T>(this T card) where T : CardModel =>
+        $"{card.TitleLocString.GetFormattedText()}{(card.IsUpgraded ? "+" : "")}";
 }
