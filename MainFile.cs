@@ -25,20 +25,22 @@ namespace PikcubeRunModifiers
             CustomRunManager.Register<GadgetsModifier>(CustomRunType.Good);
             CustomRunManager.Register<Heirloom>(CustomRunType.Good);
             CustomRunManager.Register<TheILoveVakuuModifier>(CustomRunType.Good);
+            CustomRunManager.Register<Inception>(CustomRunType.Good);
             CustomRunManager.Register<MyUncleOwnsMegacrit>(CustomRunType.Good);
+            CustomRunManager.Register<Neapolitan>(CustomRunType.Good);
             CustomRunManager.Register<MyTrueForm>(CustomRunType.Good);
             CustomRunManager.Register<PraiseSnecko>(CustomRunType.Good);
             CustomRunManager.Register<TexasHoldem>(CustomRunType.Good);
-            CustomRunManager.Register<TheLuckyCarder>(CustomRunType.Good);
             CustomRunManager.Register<TheLaw>(CustomRunType.Good);
             CustomRunManager.Register<AboveTheLaw>(CustomRunType.Good);
+            //CustomRunManager.Register<TheLuckyCarder>(CustomRunType.Good);
 
             CustomRunManager.Register<FourForFourModifier>(CustomRunType.Bad);
             CustomRunManager.Register<FiftyFifty>(CustomRunType.Bad);
             CustomRunManager.Register<BlahajEnjoyer>(CustomRunType.Bad);
             CustomRunManager.Register<CurseOfGreedModifier>(CustomRunType.Bad);
             CustomRunManager.Register<TheIGotARockModifier>(CustomRunType.Bad);
-            CustomRunManager.Register<OneOfEverything>(CustomRunType.Bad);
+            //CustomRunManager.Register<OneOfEverything>(CustomRunType.Bad);
             CustomRunManager.Register<PeakGaming>(CustomRunType.Bad);
             CustomRunManager.Register<PerfectLethal>(CustomRunType.Bad);
             CustomRunManager.Register<StickyStartersModifier>(CustomRunType.Bad);

@@ -10,7 +10,7 @@ public class TheLuckyCarder : PikcubeModifier
 {
     public override bool TryModifyRewardsLate(Player player, List<Reward> rewards, AbstractRoom? room)
     {
-        rewards.Add(new CardBundleReward(new CardCreationOptions([player.Character.CardPool], CardCreationSource.Encounter, CardRarityOddsType.RegularEncounter), player));
+        rewards.Add(new CardBundleReward(new CardCreationOptions([player.Character.CardPool], CardCreationSource.Encounter, CardRarityOddsType.RegularEncounter), player, 2, 3));
         return true;
     }
 }
