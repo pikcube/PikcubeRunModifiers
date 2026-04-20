@@ -93,7 +93,8 @@ public class Gadget : PikcubeRunModifiersRelic
 
     private Dictionary<CardModel, CardModel> CardsPlayedThisCombat { get; } = [];
 
-    private int TurnCoutner { get; set; }
+    [SavedProperty]
+    public int TurnCoutner { get; set; }
 
     public override RelicRarity Rarity => RelicRarity.Event;
 
@@ -179,6 +180,11 @@ public class Gadget : PikcubeRunModifiersRelic
             return false;
         }
 
+        if (TurnCoutner == 0)
+        {
+            return false;
+        }
+
         GetScrapOptions();
         return false;
     }
@@ -189,6 +195,12 @@ public class Gadget : PikcubeRunModifiersRelic
         {
             return;
         }
+
+        if (TurnCoutner == 0)
+        {
+            return;
+        }
+
         CardModel? card = await ScrapACardTask;
         ScrapACardTask = Task.FromResult<CardModel?>(null);
         if (card is not null)
@@ -220,6 +232,10 @@ public class Gadget : PikcubeRunModifiersRelic
 
     private async Task DoScrap()
     {
+        if (TurnCoutner == 0)
+        {
+            return;
+        }
         GetScrapOptions();
         CardModel? card = await ScrapACardTask;
         ScrapACardTask = Task.FromResult<CardModel?>(null);
@@ -267,7 +283,7 @@ public class Gadget : PikcubeRunModifiersRelic
                 .Where(card => card.Type is CardType.Attack or CardType.Skill or CardType.Power)
         ];
 
-        Owner.PlayerRng.Rewards.Shuffle(scrapChoices);
+        Owner.RunState.Rng.Niche.Shuffle(scrapChoices);
 
         CardModel[] cards =
         [
