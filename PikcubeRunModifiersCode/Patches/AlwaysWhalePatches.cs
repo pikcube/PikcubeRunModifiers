@@ -50,23 +50,23 @@ public static class AlwaysWhalePatches
     {
         [HarmonyReversePatch]
         [HarmonyPatch(typeof(Neow), "GenerateInitialOptions")]
-        public static IReadOnlyList<EventOption> GenerateInitialOptions(object instance)
+        public static IReadOnlyList<EventOption> GenerateInitialOptionsWithoutModifiers(object instance)
         {
-            IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            _ = Transpiler(null!);
+            return [];
+
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 CodeMatcher matcher = new(instructions);
 
                 matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]));
-                matcher.ThrowIfInvalid("Could not find modifiers.count");
+                matcher.ThrowIfInvalid("Could not find branch instruction");
                 object? operand = matcher.Instruction.operand;
                 matcher.RemoveInstruction();
                 matcher.InsertAndAdvance(new CodeInstruction(OpCodes.Blt, operand));
 
                 return matcher.Instructions();
             }
-
-            _ = Transpiler(null!);
-            return [];
         }
     }
 }

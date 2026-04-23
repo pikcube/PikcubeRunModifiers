@@ -48,7 +48,7 @@ public class AlwaysWhale : PikcubeModifier
         }
         if (ModifierOptions.Count <= 0)
         {
-            e.NewList = AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptions(e.Neow);
+            e.NewList = AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptionsWithoutModifiers(e.Neow);
             return;
         }
 
@@ -65,7 +65,7 @@ public class AlwaysWhale : PikcubeModifier
 
         if (index + 1 >= ModifierOptions.Count)
         {
-            method.Invoke(neow, [neow.InitialDescription, AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptions(neow)]);
+            method.Invoke(neow, [neow.InitialDescription, AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptionsWithoutModifiers(neow)]);
         }
         else
         {
