@@ -21,6 +21,7 @@ namespace PikcubeRunModifiers
 
             harmony.PatchAll();
 
+            CustomRunManager.Register<AlwaysWhale>(CustomRunType.Good);
             CustomRunManager.Register<Dig>(CustomRunType.Good);
             CustomRunManager.Register<GadgetsModifier>(CustomRunType.Good);
             CustomRunManager.Register<Heirloom>(CustomRunType.Good);

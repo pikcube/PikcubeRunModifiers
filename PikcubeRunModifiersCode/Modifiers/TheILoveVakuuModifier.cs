@@ -41,9 +41,9 @@ public class TheILoveVakuuModifier : PikcubeModifier
 
     private void LoveVakuuPatches_ModifyGenerateInitialOptions(object? sender, LoveVakuuPatches.ModifyInitialArgs e)
     {
+        LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
         if (RunState.CurrentRoomCount > 1)
         {
-            LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
             return;
         }
         ModifierOptions.Clear();
@@ -65,7 +65,6 @@ public class TheILoveVakuuModifier : PikcubeModifier
         }
         OriginalVakuuOptions = e.NewList;
         e.NewList = [ModifierOptions[0]];
-        LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
     }
 
     private async Task OnChosen(Func<Task> option, int index, Vakuu vakuu)
