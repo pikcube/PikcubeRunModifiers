@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Powers;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
@@ -16,16 +17,16 @@ public class CurseOfGreedModifier : PikcubeModifier
 {
     static CurseOfGreedModifier()
     {
-        MainFile.RelicSpawnManager.RegisterRule<MoltenEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<ToxicEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<FrozenEgg>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<Whetstone>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<WarPaint>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<StoneCracker>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<RazorTooth>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<Bellows>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<Pomander>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
-        MainFile.RelicSpawnManager.RegisterRule<LavaLamp>(runState => !runState.Modifiers.Any(m => m is CurseOfGreedModifier));
+        MainFile.RelicSpawnManager.RegisterRule<MoltenEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<ToxicEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<FrozenEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<Whetstone>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<WarPaint>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<StoneCracker>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<RazorTooth>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<Bellows>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<Pomander>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        MainFile.RelicSpawnManager.RegisterRule<LavaLamp>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
     }
 
     public override bool ShouldReceiveCombatHooks => true;

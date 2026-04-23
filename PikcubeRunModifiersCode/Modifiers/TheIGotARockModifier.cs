@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
@@ -13,7 +14,7 @@ public class TheIGotARockModifier : PikcubeModifier
 {
     static TheIGotARockModifier()
     {
-        MainFile.RelicSpawnManager.RegisterRule<PetrifiedToad>(runState => !runState.Modifiers.Any(m => m is TheIGotARockModifier));
+        MainFile.RelicSpawnManager.RegisterRule<PetrifiedToad>(Predicates.UnlessModifierPresent<TheIGotARockModifier>);
     }
 
     protected override void AfterRunCreated(RunState runState)
