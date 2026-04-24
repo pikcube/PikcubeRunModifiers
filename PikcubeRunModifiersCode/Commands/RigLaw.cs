@@ -24,7 +24,7 @@ public class RigLaw : AbstractConsoleCmd
 
         if (lawModifier is null)
         {
-            return new CmdResult(false, "Not in a run");
+            return new CmdResult(false, "Not in a law run");
         }
 
         lawModifier.RigNext(issuingPlayer);
