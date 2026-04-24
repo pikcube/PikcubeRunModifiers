@@ -77,7 +77,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.8" />
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.0.9" />
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
         <PackageReference Include="Pikcube.Common" Version="0.1.29" />
         <AdditionalFiles Include="PikcubeRunModifiers/localization/**/*.json" />

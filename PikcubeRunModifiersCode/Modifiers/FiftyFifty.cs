@@ -11,7 +11,7 @@ public class FiftyFifty : PikcubeModifier
 {
     public override bool ShouldReceiveCombatHooks => true;
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (combatState.RoundNumber != 1)
         {

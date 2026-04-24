@@ -325,7 +325,7 @@ public class Gadget : PikcubeRunModifiersRelic
             }
 
             gadget?.Flash();
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true, CardPilePosition.Top);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, gadget?.Owner, CardPilePosition.Top);
 
             return;
         }

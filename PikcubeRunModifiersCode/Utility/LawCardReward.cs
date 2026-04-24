@@ -19,7 +19,7 @@ using Pikcube.Common.Utility;
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 
 public class LawCardReward(CardReward baseCardReward, CardModel target) : CardReward(baseCardReward.Cards,
-    baseCardReward.GetOptions().Source, baseCardReward.Player)
+    baseCardReward.GetOptions().Source, baseCardReward.Player, baseCardReward.GetOptions())
 {
     private CardModel Target { get; } = target;
 

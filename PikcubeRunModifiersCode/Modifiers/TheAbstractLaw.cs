@@ -33,6 +33,8 @@ public abstract class TheAbstractLaw : PikcubeModifier
         set => LawCardBlueprint = JsonSerializer.Deserialize<Dictionary<ulong, SerializableCard>>(value) ?? throw new NoNullAllowedException();
     }
 
+    public Dictionary<ulong, bool> Rigged { get; } = [];
+
     protected override void AfterRunCreated(RunState runState)
     {
         LawCardBlueprint.Clear();
@@ -76,6 +78,33 @@ public abstract class TheAbstractLaw : PikcubeModifier
         };
     }
 
+    public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
+    {
+        Rigged.TryGetValue(player.NetId, out bool isRigged);
+        if (!isRigged)
+        {
+            return false;
+        }
+
+        if (!LawCardBlueprint.TryGetValue(player.NetId, out SerializableCard? blueprint))
+        {
+            return false;
+        }
+
+        CardModel lawCard = CardModel.FromSerializable(blueprint);
+
+        Rigged[player.NetId] = false;
+
+        if (cardRewardOptions.Any(c => c.Card.CanonicalInstance == lawCard.CanonicalInstance))
+        {
+            return false;
+        }
+
+        CardCreationResult optionToRig = cardRewardOptions[1];
+        optionToRig.ModifyCard(lawCard.CreateNewInstance(player));
+        return true;
+    }
+
     public override bool TryModifyRewardsLate(Player player, List<Reward> rewards, AbstractRoom? room)
     {
         bool modified = false;
@@ -95,8 +124,7 @@ public abstract class TheAbstractLaw : PikcubeModifier
                 cardReward.Populate().GetAwaiter().GetResult();
             }
 
-            CardModel? lawCardRewardItem =
-                cardReward.Cards.FirstOrDefault(c => c.CanonicalInstance == lawCard.CanonicalInstance);
+            CardModel? lawCardRewardItem = cardReward.Cards.FirstOrDefault(c => c.CanonicalInstance == lawCard.CanonicalInstance);
 
             if (lawCardRewardItem is null)
             {
@@ -159,5 +187,10 @@ public abstract class TheAbstractLaw : PikcubeModifier
         alternatives.TryReplaceValue(reroll, newReroll);
 
         return true;
+    }
+
+    public void RigNext(Player issuingPlayer)
+    {
+        Rigged[issuingPlayer.NetId] = true;
     }
 }
