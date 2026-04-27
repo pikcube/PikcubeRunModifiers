@@ -1,15 +1,8 @@
 ﻿using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Events;
-using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
-using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Utility;
-using System.Data;
-using System.Reflection;
 using System.Reflection.Emit;
-using static PikcubeRunModifiers.PikcubeRunModifiersCode.Patches.LoveVakuuPatches;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
@@ -52,6 +45,7 @@ public static class AlwaysWhalePatches
         [HarmonyPatch(typeof(Neow), "GenerateInitialOptions")]
         public static IReadOnlyList<EventOption> GenerateInitialOptionsWithoutModifiers(object instance)
         {
+            _ = instance.GetType();
             _ = Transpiler(null!);
             return [];
 

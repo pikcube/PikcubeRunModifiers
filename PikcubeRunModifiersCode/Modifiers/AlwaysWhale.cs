@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using Godot;
 using HarmonyLib;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -10,6 +10,7 @@ using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
+[UsedImplicitly]
 public class AlwaysWhale : PikcubeModifier
 {
     private List<EventOption> ModifierOptions { get; } = [];
@@ -46,7 +47,7 @@ public class AlwaysWhale : PikcubeModifier
             int index = ModifierOptions.Count;
             ModifierOptions.Add(new EventOption(e.Neow, () => OnChosen(option, index, e.Neow), modifier.NeowOptionTitle, modifier.NeowOptionDescription, modifier.Id.Entry, modifier.HoverTips));
         }
-        if (ModifierOptions.Count <= 0)
+        if (ModifierOptions.Count == 0)
         {
             e.NewList = AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptionsWithoutModifiers(e.Neow);
             return;
