@@ -34,7 +34,6 @@ namespace PikcubeRunModifiers
             CustomRunManager.Register<TexasHoldem>(CustomRunType.Good);
             CustomRunManager.Register<TheLaw>(CustomRunType.Good);
             //CustomRunManager.Register<AboveTheLaw>(CustomRunType.Good);
-            //CustomRunManager.Register<TheLuckyCarder>(CustomRunType.Good);
 
             CustomRunManager.Register<FourForFourModifier>(CustomRunType.Bad);
             CustomRunManager.Register<FiftyFifty>(CustomRunType.Bad);
