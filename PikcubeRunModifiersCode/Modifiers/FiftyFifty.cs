@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -24,7 +25,7 @@ public class FiftyFifty : PikcubeModifier
         }
 
         await Task.WhenAll(player.PlayerCombatState.DrawPile.Cards.Where((c, index) => index % 2 == 1).ToArray()
-            .Select(async (c, index) =>
+            .Select(async (card, index) =>
             {
                 try
                 {
@@ -32,11 +33,13 @@ public class FiftyFifty : PikcubeModifier
                     {
                         await Cmd.Wait(0.1f);
                     }
-                    await CardCmd.Exhaust(choiceContext, c);
+
+                    //Chairon's Ashes being an automatic win button is only fun the first time, so let's avoid triggering on exhaust hooks
+                    CardPileAddResult cardPileAddResult = await CardPileCmd.Add(card, PileType.Exhaust);
+                    CombatManager.Instance.History.CardExhausted(combatState, card);
                 }
                 catch (Exception e)
                 {
-                    //It's not like there's anything to do at this point but hope and pray this was thrown because Chairon's Ashes ended combat
                     MainFile.Logger.Error($"{e.GetType().Name}{Environment.NewLine}{e.Message}{Environment.NewLine}{e.StackTrace}");
                 }
             }));
