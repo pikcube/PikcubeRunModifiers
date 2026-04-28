@@ -22,7 +22,7 @@
   "MY_TRUE_FORM.title": "My True Form",
   "MY_TRUE_FORM.description": "Start with [gold]Demon Form[/gold], [gold]Serpent Form[/gold], [gold]Void Form[/gold], [gold]Reaper Form[/gold], and [gold]Echo Form[/gold].",
   "MY_UNCLE_OWNS_MEGACRIT.title": "My Uncle Owns Megacrit",
-  "MY_UNCLE_OWNS_MEGACRIT.description": "All card rewards are [gold]Rare[/gold].",
+  "MY_UNCLE_OWNS_MEGACRIT.description": "All [gold]card rewards[/gold] are [gold]Rare[/gold].",
   "NEAPOLITAN.title": "Neapolitan",
   "NEAPOLITAN.description": "Start with [gold]Ice Cream[/gold].",
   "ONE_OF_EVERYTHING.title": "One of Almost Everything",
@@ -43,5 +43,5 @@
   "THE_I_GOT_A_ROCK_MODIFIER.description": "All potions are rocks, start with [gold]Petrified Toad[/gold].",
   "THE_LAW.add": "Choose a Card to Add",
   "THE_LAW.title": "The Law",
-  "THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single common card of your color. If you are offered this card from a card reward, you are forced to take it."
+  "THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single common card of your color. If you are offered this card from a [gold]card reward[/gold], you must take it."
 }
