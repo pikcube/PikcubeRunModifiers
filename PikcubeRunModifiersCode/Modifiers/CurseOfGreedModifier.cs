@@ -17,16 +17,17 @@ public class CurseOfGreedModifier : PikcubeModifier
 {
     static CurseOfGreedModifier()
     {
-        MainFile.RelicSpawnManager.RegisterRule<MoltenEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<ToxicEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<FrozenEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<Whetstone>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<WarPaint>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<StoneCracker>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<RazorTooth>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<Bellows>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<Pomander>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
-        MainFile.RelicSpawnManager.RegisterRule<LavaLamp>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        RelicSpawnManager relicSpawnManager = new();
+        relicSpawnManager.RegisterRule<MoltenEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<ToxicEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<FrozenEgg>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<Whetstone>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<WarPaint>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<StoneCracker>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<RazorTooth>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<Bellows>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<Pomander>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
+        relicSpawnManager.RegisterRule<LavaLamp>(Predicates.UnlessModifierPresent<CurseOfGreedModifier>);
     }
 
     public override bool ShouldReceiveCombatHooks => true;

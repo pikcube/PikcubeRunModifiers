@@ -14,7 +14,7 @@ public class TheIGotARockModifier : PikcubeModifier
 {
     static TheIGotARockModifier()
     {
-        MainFile.RelicSpawnManager.RegisterRule<PetrifiedToad>(Predicates.UnlessModifierPresent<TheIGotARockModifier>);
+        new RelicSpawnManager().RegisterRule<PetrifiedToad>(Predicates.UnlessModifierPresent<TheIGotARockModifier>);
     }
 
     protected override void AfterRunCreated(RunState runState)

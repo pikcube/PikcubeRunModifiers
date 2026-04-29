@@ -15,7 +15,7 @@ public class TheILoveVakuuModifier : PikcubeModifier
 {
     private Dictionary<ActModel, RunState> ActsToModify { get; } = [];
     private List<EventOption> ModifierOptions { get; } = [];
-    private IReadOnlyList<EventOption> OriginalVakuuOptions { get; set; } = [];
+    private Dictionary<ulong, IReadOnlyList<EventOption>> OriginalVakuuOptions { get; set; } = [];
 
     protected override void AfterRunCreated(RunState runState)
     {
@@ -41,7 +41,6 @@ public class TheILoveVakuuModifier : PikcubeModifier
 
     private void LoveVakuuPatches_ModifyGenerateInitialOptions(object? sender, LoveVakuuPatches.ModifyInitialArgs e)
     {
-        LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
         if (RunState.CurrentRoomCount > 1)
         {
             return;
@@ -63,7 +62,7 @@ public class TheILoveVakuuModifier : PikcubeModifier
         {
             return;
         }
-        OriginalVakuuOptions = e.NewList;
+        OriginalVakuuOptions.Add(e.Vakuu.Owner!.NetId, e.NewList);
         e.NewList = [ModifierOptions[0]];
     }
 
@@ -76,7 +75,7 @@ public class TheILoveVakuuModifier : PikcubeModifier
 
         if (index + 1 >= ModifierOptions.Count)
         {
-            method.Invoke(vakuu, [vakuu.InitialDescription, OriginalVakuuOptions]);
+            method.Invoke(vakuu, [vakuu.InitialDescription, OriginalVakuuOptions[vakuu.Owner!.NetId]]);
         }
         else
         {
@@ -92,7 +91,7 @@ public class TheILoveVakuuModifier : PikcubeModifier
             return;
         }
 
-        if (!ActsToModify.Remove(act, out RunState? runState))
+        if (!ActsToModify.Remove(act, out RunState? _))
         {
             return;
         }
@@ -101,11 +100,6 @@ public class TheILoveVakuuModifier : PikcubeModifier
         {
             Vakuu ancientEventModel = ModelDb.AncientEvent<Vakuu>();
             e.NewAncient = ancientEventModel;
-        }
-
-        if (ActsToModify.Count == 0)
-        {
-            LoveVakuuPatches.ModifyAncientForAct -= ILoveVakuuPatch_ModifyAncientForAct;
         }
     }
 }

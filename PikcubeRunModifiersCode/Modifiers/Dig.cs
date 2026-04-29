@@ -12,7 +12,7 @@ public class Dig : PikcubeModifier
 {
     static Dig()
     {
-        MainFile.RelicSpawnManager.RegisterRule<Shovel>(Predicates.UnlessModifierPresent<Dig>);
+        new RelicSpawnManager().RegisterRule<Shovel>(Predicates.UnlessModifierPresent<Dig>);
     }
     
     protected override void AfterRunCreated(RunState runState)

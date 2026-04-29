@@ -30,7 +30,6 @@ public class AlwaysWhale : PikcubeModifier
 
     private void AlwaysWhalePatches_ModifyGenerateInitialOptions(object? sender, AlwaysWhalePatches.ModifyInitialArgs e)
     {
-        AlwaysWhalePatches.ModifyGenerateInitialOptions -= AlwaysWhalePatches_ModifyGenerateInitialOptions;
         if (RunState.CurrentRoomCount > 1)
         {
             return;

@@ -10,7 +10,7 @@ public class Inception : PikcubeModifier
 {
     static Inception()
     {
-        MainFile.RelicSpawnManager.RegisterRule<UnceasingTop>(Predicates.UnlessModifierPresent<Inception>);
+        new RelicSpawnManager().RegisterRule<UnceasingTop>(Predicates.UnlessModifierPresent<Inception>);
     }
     protected override void AfterRunCreated(RunState runState)
     {

@@ -2,11 +2,16 @@
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 public class TexasHoldem : PikcubeModifier
 {
+    static TexasHoldem()
+    {
+        new RelicSpawnManager().RegisterRule<RunicPyramid>(Predicates.UnlessModifierPresent<TexasHoldem>);
+    }
     protected override void AfterRunCreated(RunState runState)
     {
         foreach (Player p in runState.Players)

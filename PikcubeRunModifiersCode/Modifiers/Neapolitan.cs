@@ -10,7 +10,7 @@ public class Neapolitan : PikcubeModifier
 {
     static Neapolitan()
     {
-        MainFile.RelicSpawnManager.RegisterRule<IceCream>(Predicates.UnlessModifierPresent<Neapolitan>);
+        new RelicSpawnManager().RegisterRule<IceCream>(Predicates.UnlessModifierPresent<Neapolitan>);
     }
     protected override void AfterRunCreated(RunState runState)
     {

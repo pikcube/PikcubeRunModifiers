@@ -2,13 +2,20 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 public class PeakGaming : PikcubeModifier
 {
+    static PeakGaming()
+    {
+        new EventSpawnManager().RegisterRule<DollRoom>(Predicates.UnlessModifierPresent<PeakGaming>);
+    }
+
     public bool IsNopeModeEnabled { get; set; } = false;
     private readonly List<CardModel> _cards = [];
 
