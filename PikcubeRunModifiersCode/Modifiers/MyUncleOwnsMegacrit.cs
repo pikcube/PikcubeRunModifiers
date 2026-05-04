@@ -2,11 +2,12 @@
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Abstracts;
 using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class MyUncleOwnsMegacrit : PikcubeModifier
+public class MyUncleOwnsMegacrit() : PikcubeRunModifierModel(CustomRunType.Good, "My Uncle Owns Megacrit")
 {
     public override bool TryModifyRewardsLate(Player player, List<Reward> rewards, AbstractRoom? room)
     {

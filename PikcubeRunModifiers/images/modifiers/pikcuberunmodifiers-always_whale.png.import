@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn4u2nylcmms8"
-path="res://.godot/imported/peak_gaming.png-f1a2031b68b5012b9bb326b70864ca54.ctex"
+uid="uid://d2uvki3ju7b1f"
+path="res://.godot/imported/pikcuberunmodifiers-always_whale.png-1994323ad9817f2817747212baf3e204.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/peak_gaming.png"
-dest_files=["res://.godot/imported/peak_gaming.png-f1a2031b68b5012b9bb326b70864ca54.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-always_whale.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-always_whale.png-1994323ad9817f2817747212baf3e204.ctex"]
 
 [params]
 

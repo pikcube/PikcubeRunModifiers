@@ -1,10 +1,12 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Abstracts;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 //+1 Energy, -1 Card per turn
-public class FourForFourModifier : PikcubeModifier
+public class FourForFourModifier() : PikcubeRunModifierModel(CustomRunType.Bad, "4 for 4")
 {
     public override bool ShouldReceiveCombatHooks => true;
 

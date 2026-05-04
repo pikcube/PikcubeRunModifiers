@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5nlqe3u5o6ww"
-path="res://.godot/imported/blahaj_enjoyer.png-0808b8f03be79d651a62eeb58510b68e.ctex"
+uid="uid://cvrg245neyew0"
+path="res://.godot/imported/pikcuberunmodifiers-the_i_got_a_rock_modifier.png-9e696289c3867f1f3413663af4cd0b52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/blahaj_enjoyer.png"
-dest_files=["res://.godot/imported/blahaj_enjoyer.png-0808b8f03be79d651a62eeb58510b68e.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-the_i_got_a_rock_modifier.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-the_i_got_a_rock_modifier.png-9e696289c3867f1f3413663af4cd0b52.ctex"]
 
 [params]
 

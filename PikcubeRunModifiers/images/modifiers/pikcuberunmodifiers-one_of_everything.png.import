@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfbeu7hdk4d5l"
-path="res://.godot/imported/dig.png-c7d146f864de264dbadca4f0e8da0992.ctex"
+uid="uid://bfdceq61o46pv"
+path="res://.godot/imported/pikcuberunmodifiers-one_of_everything.png-aa104e1971b66158f5befacd334f3dc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/dig.png"
-dest_files=["res://.godot/imported/dig.png-c7d146f864de264dbadca4f0e8da0992.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-one_of_everything.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-one_of_everything.png-aa104e1971b66158f5befacd334f3dc0.ctex"]
 
 [params]
 

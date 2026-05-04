@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6po3ssk7r83o"
-path="res://.godot/imported/always_whale.png-dcf6eb1e2ef1c086f1cf4d1a18e0862b.ctex"
+uid="uid://su3nde4i4lxr"
+path="res://.godot/imported/pikcuberunmodifiers-praise_snecko.png-85459825438c201abe21d89aec8c9347.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/always_whale.png"
-dest_files=["res://.godot/imported/always_whale.png-dcf6eb1e2ef1c086f1cf4d1a18e0862b.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-praise_snecko.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-praise_snecko.png-85459825438c201abe21d89aec8c9347.ctex"]
 
 [params]
 

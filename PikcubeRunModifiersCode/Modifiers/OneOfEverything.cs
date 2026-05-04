@@ -4,11 +4,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using Pikcube.Common.Abstracts;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class OneOfEverything : PikcubeModifier
+public class OneOfEverything() : PikcubeRunModifierModel(CustomRunType.None, "One of Everything")
 {
     public override bool ClearsPlayerDeck => true;
 

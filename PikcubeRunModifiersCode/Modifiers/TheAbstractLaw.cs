@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Reflection;
-using System.Text.Json;
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.CardRewardAlternatives;
@@ -18,12 +15,16 @@ using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Pikcube.Common.Abstracts;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
+using System.Data;
+using System.Reflection;
+using System.Text.Json;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public abstract class TheAbstractLaw : PikcubeModifier
+public abstract class TheAbstractLaw(CustomRunType type, string name) : PikcubeRunModifierModel(type, name)
 {
     public abstract Func<CardModel, bool> Filter { get;}
 

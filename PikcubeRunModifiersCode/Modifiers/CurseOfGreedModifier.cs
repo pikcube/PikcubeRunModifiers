@@ -7,13 +7,14 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Abstracts;
 using Pikcube.Common.Powers;
 using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class CurseOfGreedModifier : PikcubeModifier
+public class CurseOfGreedModifier() : PikcubeRunModifierModel(CustomRunType.Bad, "Curse of Greed")
 {
     static CurseOfGreedModifier()
     {

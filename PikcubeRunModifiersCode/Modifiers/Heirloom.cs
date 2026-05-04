@@ -1,16 +1,18 @@
-﻿using System.Data;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using Pikcube.Common.Abstracts;
+using Pikcube.Common.Utility;
+using System.Data;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class Heirloom : PikcubeModifier
+public class Heirloom() : PikcubeRunModifierModel(CustomRunType.Good, "Heirloom")
 {
     public override LocString NeowOptionTitle => Title;
     public override LocString NeowOptionDescription => Description;

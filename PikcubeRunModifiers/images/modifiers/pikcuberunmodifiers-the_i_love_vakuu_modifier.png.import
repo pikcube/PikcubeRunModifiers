@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8eib6ci15tm0"
-path="res://.godot/imported/above_the_law.png-39e9446f633f82e29202980b79b52e8c.ctex"
+uid="uid://f2e4um0qnrgd"
+path="res://.godot/imported/pikcuberunmodifiers-the_i_love_vakuu_modifier.png-d1dc25610f2a4f79c13ec82f311b99c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/above_the_law.png"
-dest_files=["res://.godot/imported/above_the_law.png-39e9446f633f82e29202980b79b52e8c.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-the_i_love_vakuu_modifier.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-the_i_love_vakuu_modifier.png-d1dc25610f2a4f79c13ec82f311b99c0.ctex"]
 
 [params]
 

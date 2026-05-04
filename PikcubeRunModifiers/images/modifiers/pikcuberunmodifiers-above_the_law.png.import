@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u0w2nb03ykoa"
-path="res://.godot/imported/curse_of_greed_modifier.png-5199c6dd8dbaaa7331a92b47a3287a65.ctex"
+uid="uid://k3hrhal5g5ir"
+path="res://.godot/imported/pikcuberunmodifiers-above_the_law.png-21d97dfb9cdf3964bb21fe8bb5ad4598.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/curse_of_greed_modifier.png"
-dest_files=["res://.godot/imported/curse_of_greed_modifier.png-5199c6dd8dbaaa7331a92b47a3287a65.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-above_the_law.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-above_the_law.png-21d97dfb9cdf3964bb21fe8bb5ad4598.ctex"]
 
 [params]
 

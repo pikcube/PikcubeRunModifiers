@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1kwqjusywtn6"
-path="res://.godot/imported/the_i_got_a_rock_modifier.png-dfddf42575338f041c0106e9870b54a2.ctex"
+uid="uid://ckvjdn1u1ie02"
+path="res://.godot/imported/pikcuberunmodifiers-curse_of_greed_modifier.png-49aa8e29dfdb0ac11a452cbf3a74e092.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/the_i_got_a_rock_modifier.png"
-dest_files=["res://.godot/imported/the_i_got_a_rock_modifier.png-dfddf42575338f041c0106e9870b54a2.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-curse_of_greed_modifier.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-curse_of_greed_modifier.png-49aa8e29dfdb0ac11a452cbf3a74e092.ctex"]
 
 [params]
 

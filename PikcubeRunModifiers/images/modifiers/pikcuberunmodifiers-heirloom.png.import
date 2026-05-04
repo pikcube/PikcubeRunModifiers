@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2mlii4eiys6x"
-path="res://.godot/imported/four_for_four_modifier.png-e8dedeca77a8104769ba1b3ec455f686.ctex"
+uid="uid://do7m2tl2ajsbx"
+path="res://.godot/imported/pikcuberunmodifiers-heirloom.png-e50fab35f9c89d6c5128068a2126167c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/four_for_four_modifier.png"
-dest_files=["res://.godot/imported/four_for_four_modifier.png-e8dedeca77a8104769ba1b3ec455f686.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-heirloom.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-heirloom.png-e50fab35f9c89d6c5128068a2126167c.ctex"]
 
 [params]
 

@@ -5,11 +5,13 @@ using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Abstracts;
+using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class BlahajEnjoyer : PikcubeModifier
+public class BlahajEnjoyer() : PikcubeRunModifierModel(CustomRunType.Bad, "Blahaj Enjoyer")
 { 
     protected override void AfterRunCreated(RunState runState)
     {

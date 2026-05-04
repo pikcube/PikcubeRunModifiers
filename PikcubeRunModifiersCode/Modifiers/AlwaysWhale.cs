@@ -6,12 +6,14 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Abstracts;
+using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class AlwaysWhale : PikcubeModifier
+public class AlwaysWhale() : PikcubeRunModifierModel(CustomRunType.Good, new CustomRunModifierInfo(MainFile.ModId, "Always Whale", ModifierPriority.Immediate))
 {
     private List<EventOption> ModifierOptions { get; } = [];
     protected override void AfterRunCreated(RunState runState)

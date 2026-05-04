@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8ct4ptl7a0t4"
-path="res://.godot/imported/neapolitan.png-d500e80c93be44d2c93fa773159989d0.ctex"
+uid="uid://5asv43sptb7m"
+path="res://.godot/imported/pikcuberunmodifiers-four_for_four_modifier.png-15ed103c6e4e23cef857964293ed0ab4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/neapolitan.png"
-dest_files=["res://.godot/imported/neapolitan.png-d500e80c93be44d2c93fa773159989d0.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-four_for_four_modifier.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-four_for_four_modifier.png-15ed103c6e4e23cef857964293ed0ab4.ctex"]
 
 [params]
 

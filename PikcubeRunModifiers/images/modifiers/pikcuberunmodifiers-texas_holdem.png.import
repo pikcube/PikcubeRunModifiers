@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c037hjiut6uug"
-path="res://.godot/imported/heirloom.png-2a71ca5d974fb0a384657fab19928b68.ctex"
+uid="uid://b2rm2u686b4dm"
+path="res://.godot/imported/pikcuberunmodifiers-texas_holdem.png-7773b2f7b442b57cddb792beb1503642.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/heirloom.png"
-dest_files=["res://.godot/imported/heirloom.png-2a71ca5d974fb0a384657fab19928b68.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-texas_holdem.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-texas_holdem.png-7773b2f7b442b57cddb792beb1503642.ctex"]
 
 [params]
 

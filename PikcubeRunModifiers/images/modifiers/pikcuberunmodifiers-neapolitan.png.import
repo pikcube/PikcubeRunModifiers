@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4n3n3e8jwsgm"
-path="res://.godot/imported/inception.png-29e81d2a73b5a68ebb20e1eb73836ca5.ctex"
+uid="uid://3i48jas68aox"
+path="res://.godot/imported/pikcuberunmodifiers-neapolitan.png-fc54bf3a1931ecde2a0774374b56d6d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/inception.png"
-dest_files=["res://.godot/imported/inception.png-29e81d2a73b5a68ebb20e1eb73836ca5.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-neapolitan.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-neapolitan.png-fc54bf3a1931ecde2a0774374b56d6d3.ctex"]
 
 [params]
 

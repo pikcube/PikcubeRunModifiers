@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfchqumpwktfn"
-path="res://.godot/imported/perfect_lethal.png-b365f7e883657cbbaf19d9f67dfb1ef2.ctex"
+uid="uid://bfcxv1o4wjdog"
+path="res://.godot/imported/pikcuberunmodifiers-dig.png-247e587d8f02f9cf1e4c56197b6f8a74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/perfect_lethal.png"
-dest_files=["res://.godot/imported/perfect_lethal.png-b365f7e883657cbbaf19d9f67dfb1ef2.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-dig.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-dig.png-247e587d8f02f9cf1e4c56197b6f8a74.ctex"]
 
 [params]
 

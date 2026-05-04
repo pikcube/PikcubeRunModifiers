@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tk4ccfuqrxdo"
-path="res://.godot/imported/my_uncle_owns_megacrit.png-77ebe17dd66afe0f8b9302cec89d9109.ctex"
+uid="uid://01lflyso7062"
+path="res://.godot/imported/pikcuberunmodifiers-my_uncle_owns_megacrit.png-9320cf49f00d15aa58aab6fef8b7c0b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/my_uncle_owns_megacrit.png"
-dest_files=["res://.godot/imported/my_uncle_owns_megacrit.png-77ebe17dd66afe0f8b9302cec89d9109.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-my_uncle_owns_megacrit.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-my_uncle_owns_megacrit.png-9320cf49f00d15aa58aab6fef8b7c0b9.ctex"]
 
 [params]
 

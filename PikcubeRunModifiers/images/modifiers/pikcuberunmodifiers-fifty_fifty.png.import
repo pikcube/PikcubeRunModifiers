@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x0nncnlvvbat"
-path="res://.godot/imported/the_law.png-fafd295fb4f83ca9b4ccc22900026a01.ctex"
+uid="uid://dvvxot1rsrjq"
+path="res://.godot/imported/pikcuberunmodifiers-fifty_fifty.png-0c98e176aecc3556de82b18bc0371bfd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/the_law.png"
-dest_files=["res://.godot/imported/the_law.png-fafd295fb4f83ca9b4ccc22900026a01.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-fifty_fifty.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-fifty_fifty.png-0c98e176aecc3556de82b18bc0371bfd.ctex"]
 
 [params]
 

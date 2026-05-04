@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6w37p5orutpj"
-path="res://.godot/imported/texas_holdem.png-edcdb1919c88091fbd5ba21c23ab9b00.ctex"
+uid="uid://cwlu5y3fqhuc4"
+path="res://.godot/imported/pikcuberunmodifiers-peak_gaming.png-f701b4b00d26c7f80c5faa075090ae01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/texas_holdem.png"
-dest_files=["res://.godot/imported/texas_holdem.png-edcdb1919c88091fbd5ba21c23ab9b00.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-peak_gaming.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-peak_gaming.png-f701b4b00d26c7f80c5faa075090ae01.ctex"]
 
 [params]
 

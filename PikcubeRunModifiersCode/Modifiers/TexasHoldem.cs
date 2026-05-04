@@ -2,11 +2,12 @@
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
+using Pikcube.Common.Abstracts;
 using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class TexasHoldem : PikcubeModifier
+public class TexasHoldem() : PikcubeRunModifierModel(CustomRunType.Good, "Texas Holdem")
 {
     static TexasHoldem()
     {

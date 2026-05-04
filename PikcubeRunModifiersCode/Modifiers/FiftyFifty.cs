@@ -4,11 +4,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Pikcube.Common.Abstracts;
+using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class FiftyFifty : PikcubeModifier
+public class FiftyFifty() : PikcubeRunModifierModel(CustomRunType.Bad, "50/50")
 {
     public override bool ShouldReceiveCombatHooks => true;
 

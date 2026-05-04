@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://woj4355yxf73"
-path="res://.godot/imported/praise_snecko.png-2d579fd87a3e5f28c51ff9af86a2f6e2.ctex"
+uid="uid://cj4kb0ritch31"
+path="res://.godot/imported/pikcuberunmodifiers-blahaj_enjoyer.png-e856abd18bbdf993d59a2c710a63f173.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/praise_snecko.png"
-dest_files=["res://.godot/imported/praise_snecko.png-2d579fd87a3e5f28c51ff9af86a2f6e2.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-blahaj_enjoyer.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-blahaj_enjoyer.png-e856abd18bbdf993d59a2c710a63f173.ctex"]
 
 [params]
 

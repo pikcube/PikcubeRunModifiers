@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mgqjk731hcs0"
-path="res://.godot/imported/the_i_love_vakuu_modifier.png-8a68a8b54b8b3a4bc8dff0195c93e0a8.ctex"
+uid="uid://c65p5f1mymmob"
+path="res://.godot/imported/pikcuberunmodifiers-sticky_starters_modifier.png-1c5d091b860cc0bd28d76ad85d2f8abe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/packed/modifiers/the_i_love_vakuu_modifier.png"
-dest_files=["res://.godot/imported/the_i_love_vakuu_modifier.png-8a68a8b54b8b3a4bc8dff0195c93e0a8.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-sticky_starters_modifier.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-sticky_starters_modifier.png-1c5d091b860cc0bd28d76ad85d2f8abe.ctex"]
 
 [params]
 
