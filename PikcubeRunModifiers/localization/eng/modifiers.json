@@ -6,7 +6,7 @@
   "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.title": "Blahaj Enjoyer",
   "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.description": "The Merchant now [gold]transforms[/gold] cards instead of removing them.",
   "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.title": "Curse of Greed",
-  "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.description": "Every card you find is [gold]Upgraded[/gold]. Cards have a [blue]50%[/blue] chance to be [gold]discarded[/gold] instead of played. Cannot trigger more than once per turn.",
+  "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.description": "Every card you find is [gold]Upgraded[/gold]. Cards have a [blue]50%[/blue] chance to be [gold]exhausted[/gold] for the turn instead of played. Cannot trigger more than once per turn.",
   "PIKCUBERUNMODIFIERS-DIG.title": "DIG!",
   "PIKCUBERUNMODIFIERS-DIG.description": "Start with a [gold]Shovel[/gold].",
   "PIKCUBERUNMODIFIERS-FIFTY_FIFTY.title": "50/50",
