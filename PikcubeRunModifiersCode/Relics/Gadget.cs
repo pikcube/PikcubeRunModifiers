@@ -19,6 +19,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using System.Data;
+using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
 

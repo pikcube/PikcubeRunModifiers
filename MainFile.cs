@@ -1,9 +1,6 @@
-using BaseLib.Patches.Content;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
-using Pikcube.Common.Utility;
-using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 namespace PikcubeRunModifiers
 {

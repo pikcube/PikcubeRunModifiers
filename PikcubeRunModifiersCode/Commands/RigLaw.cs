@@ -1,7 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Entities.Players;
-using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Commands;
@@ -20,7 +19,7 @@ public class RigLaw : AbstractConsoleCmd
             return new CmdResult(false, "Not in a run");
         }
 
-        TheAbstractLaw? lawModifier = issuingPlayer.RunState.Modifiers.OfType<TheAbstractLaw>().SingleOrDefault();
+        TheLaw? lawModifier = issuingPlayer.RunState.Modifiers.OfType<TheLaw>().SingleOrDefault();
 
         if (lawModifier is null)
         {

@@ -4,9 +4,7 @@
     public static class StringExtensions
     {
         extension(string path)
-        {
-            
-
+        { 
             public string ImagePath()
             {
                 return Path.Join(MainFile.ModId, "images", path);

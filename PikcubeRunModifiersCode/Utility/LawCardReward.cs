@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
 using System.Data;
 using MegaCrit.Sts2.Core.Entities.Players;
-using Pikcube.Common.Utility;
+using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 
