@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Utility;
@@ -25,5 +26,17 @@ public class Dig() : PikcubeRunModifierModel(CustomRunType.Good, "Dig!")
             }
             RelicCmd.Obtain<Shovel>(p);
         }
+    }
+
+    public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
+    {
+        HealRestSiteOption? heal = options.OfType<HealRestSiteOption>().FirstOrDefault();
+        if (heal is null)
+        {
+            return false;
+        }
+
+        heal.IsEnabled = false;
+        return true;
     }
 }

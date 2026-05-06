@@ -52,7 +52,6 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
     public override void ModifyMerchantCardCreationResults(Player player, List<CardCreationResult> cards)
     {
         Rigged.TryGetValue(player.NetId, out bool isRigged);
-        Rigged[player.NetId] = false;
         if (!isRigged)
         {
             return;
@@ -65,19 +64,16 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
 
         CardModel lawCard = CardModel.FromSerializable(blueprint);
 
-        if (cards.Any(c => c.Card.CanonicalInstance == lawCard.CanonicalInstance))
+        CardCreationResult? riggedEntry = cards.FirstOrDefault(c => c.Card.Type == lawCard.Type);
+
+        if (riggedEntry is null)
         {
             return;
         }
 
-        CardCreationResult? optiontoRig = cards.FirstOrDefault();
-        if (optiontoRig is null)
-        {
-            Rigged[player.NetId] = isRigged;
-            //fuck
-            return;
-        }
-        optiontoRig.ModifyCard(lawCard.CreateNewInstance(player));
+        Rigged[player.NetId] = false;
+
+        riggedEntry.ModifyCard(lawCard.CreateNewInstance(player));
     }
 
     public override Task AfterRoomEntered(AbstractRoom room)

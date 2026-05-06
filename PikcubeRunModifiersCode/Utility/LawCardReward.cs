@@ -32,6 +32,9 @@ public class LawCardReward(CardReward baseCardReward, CardModel target) : CardRe
     public static async Task GetLawedFunc(IList<CardModel> cards, CardModel target, Player player)
     {
         List<CardPileAddResult> results = [];
+
+        cards = [.. cards.OrderBy(c => c.CanonicalInstance == target.CanonicalInstance)];
+
         foreach (CardModel card in cards.Where(c => c.CanonicalInstance == target.CanonicalInstance))
         {
             results.Add(await CardPileCmd.Add(card, PileType.Deck));
@@ -39,11 +42,12 @@ public class LawCardReward(CardReward baseCardReward, CardModel target) : CardRe
 
         foreach ((int i, CardModel card) in cards.Index())
         {
-            float delayTimeBasedOnIndex = i * 0.5f + 0.2f;
+            float delayTimeBasedOnIndex = i * 0.5f + 0.7f;
             if (card.CanonicalInstance == target.CanonicalInstance)
             {
                 CardPileAddResult result = results.Single(c => c.cardAdded == card);
                 CardCmd.PreviewCardPileAdd(result, delayTimeBasedOnIndex);
+                RunManager.Instance.RewardSynchronizer.SyncLocalObtainedCard(card);
             }
             else
             {

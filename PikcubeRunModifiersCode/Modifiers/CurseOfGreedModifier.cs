@@ -42,7 +42,7 @@ public class CurseOfGreedModifier() : PikcubeRunModifierModel(CustomRunType.Bad,
 
     public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext choiceContext, Player player)
     {
-        await PowerCmd.Apply<Cursed>(choiceContext, player.Creature, 1, null, null);
+        await PowerCmd.Apply<CursedPower>(choiceContext, player.Creature, 1, null, null);
     }
 
     public override bool TryModifyCardRewardOptionsLate(Player player, List<CardCreationResult> cardRewards, CardCreationOptions options)

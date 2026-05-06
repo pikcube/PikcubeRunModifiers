@@ -24,7 +24,7 @@ using Pikcube.Common.Extensions;
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
 
 [Pool(typeof(SharedRelicPool))]
-public class Gadget : PikcubeRunModifiersRelic
+public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
 {
     private readonly List<SerializableCard> _cachedCardsPlayed = [];
 
@@ -300,6 +300,8 @@ public class Gadget : PikcubeRunModifiersRelic
         }
 
         PlayerChoiceContext context = new BlockingPlayerChoiceContext();
+
+        //todo Hack this to fix the text
         ScrapACardTask = CardSelectCmd.FromChooseACardScreen(context, cards, Owner);
     }
 
@@ -448,5 +450,10 @@ public class Gadget : PikcubeRunModifiersRelic
         await CardPileCmd.RemoveFromDeck(card, false);
         CurrentGadgetBlueprint = card.ToSerializable();
         GetGadget();
+    }
+
+    public void ModifyCardHoverTips(CardModel sender, HoverTipEventArgs e)
+    {
+        e.NewHoverTips.Add(new HoverTip(Canonical.Title, GetGadgetTip(sender)));
     }
 }
