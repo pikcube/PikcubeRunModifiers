@@ -70,7 +70,13 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
             return;
         }
 
-        CardCreationResult optiontoRig = cards.First(c => c.Card.Type == lawCard.Type);
+        CardCreationResult? optiontoRig = cards.FirstOrDefault();
+        if (optiontoRig is null)
+        {
+            Rigged[player.NetId] = isRigged;
+            //fuck
+            return;
+        }
         optiontoRig.ModifyCard(lawCard.CreateNewInstance(player));
     }
 
@@ -187,7 +193,7 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
 
             CardModel? added = (await CardSelectCmd.FromSimpleGrid(new BlockingPlayerChoiceContext(),
                 [.. p.Character.CardPool.AllCards.Where(Filter)], p,
-                new CardSelectorPrefs(LocString.GetIfExists("modifiers", "THE_LAW.add")!, 1))).SingleOrDefault();
+                new CardSelectorPrefs(LocString.GetIfExists("modifiers", "PIKCUBERUNMODIFIERS-THE_LAW.add")!, 1))).SingleOrDefault();
 
 
             if (added is null)

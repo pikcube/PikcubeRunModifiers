@@ -1,6 +1,4 @@
 {
-  "PIKCUBERUNMODIFIERS-ABOVE_THE_LAW.title": "Above The Law",
-  "PIKCUBERUNMODIFIERS-ABOVE_THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single card of your color. If you are offered this card from a card reward, you are forced to take it.",
   "PIKCUBERUNMODIFIERS-ALWAYS_WHALE.title": "Always Whale",
   "PIKCUBERUNMODIFIERS-ALWAYS_WHALE.description": "Start with standard [gold]Neow[/gold] options.",
   "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.title": "Blahaj Enjoyer",
@@ -43,5 +41,5 @@
   "PIKCUBERUNMODIFIERS-THE_I_GOT_A_ROCK_MODIFIER.description": "All potions are rocks, start with [gold]Petrified Toad[/gold].",
   "PIKCUBERUNMODIFIERS-THE_LAW.add": "Choose a Card to Add",
   "PIKCUBERUNMODIFIERS-THE_LAW.title": "The Law",
-  "PIKCUBERUNMODIFIERS-THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single common card of your color. If you are offered this card from a [gold]card reward[/gold], you must take it."
+  "PIKCUBERUNMODIFIERS-THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single common card of your color. If you are offered this card (excluding events), you must take it."
 }
