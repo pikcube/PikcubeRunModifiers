@@ -37,6 +37,15 @@ public class Dig() : PikcubeRunModifierModel(CustomRunType.Good, "Dig!")
         }
 
         heal.IsEnabled = false;
+
+        MendRestSiteOption? mend = options.OfType<MendRestSiteOption>().FirstOrDefault();
+        if (mend is null)
+        {
+            return true;
+        }
+
+        mend.IsEnabled = false;
+
         return true;
     }
 }
