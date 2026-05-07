@@ -6,7 +6,7 @@
   "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.title": "Curse of Greed",
   "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.description": "Start with your deck [gold]upgraded[/gold]. Every card you find is [gold]upgraded[/gold]. Cards have a [blue]50%[/blue] chance to be [gold]exhausted[/gold] for the turn instead of played. Cannot trigger more than once per turn.",
   "PIKCUBERUNMODIFIERS-DIG.title": "DIG!",
-  "PIKCUBERUNMODIFIERS-DIG.description": "Start with a [gold]Shovel[/gold]. You can no longer heal at Rest Sites.",
+  "PIKCUBERUNMODIFIERS-DIG.description": "Start with a [gold]Shovel[/gold].",
   "PIKCUBERUNMODIFIERS-FIFTY_FIFTY.title": "50/50",
   "PIKCUBERUNMODIFIERS-FIFTY_FIFTY.description": "Start combat with half of your deck in your [gold]Exhaust[/gold] pile.",
   "PIKCUBERUNMODIFIERS-FOUR_FOR_FOUR_MODIFIER.title": "4 For 4",

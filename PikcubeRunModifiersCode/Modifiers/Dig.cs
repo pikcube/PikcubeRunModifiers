@@ -27,25 +27,4 @@ public class Dig() : PikcubeRunModifierModel(CustomRunType.Good, "Dig!")
             RelicCmd.Obtain<Shovel>(p);
         }
     }
-
-    public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
-    {
-        HealRestSiteOption? heal = options.OfType<HealRestSiteOption>().FirstOrDefault();
-        if (heal is null)
-        {
-            return false;
-        }
-
-        heal.IsEnabled = false;
-
-        MendRestSiteOption? mend = options.OfType<MendRestSiteOption>().FirstOrDefault();
-        if (mend is null)
-        {
-            return true;
-        }
-
-        mend.IsEnabled = false;
-
-        return true;
-    }
 }
