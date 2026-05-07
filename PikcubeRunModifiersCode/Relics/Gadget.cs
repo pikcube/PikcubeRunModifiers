@@ -19,6 +19,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using System.Data;
+using MegaCrit.Sts2.Core.Context;
 using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
@@ -186,8 +187,18 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
             return false;
         }
 
+        if (player.NetId == LocalContext.NetId)
+        {
+            BetterHooks.ModifyCardSelectionScreenTitle += BetterHooks_ModifyCardSelectionScreenTitle;
+        }
+
         GetScrapOptions();
         return false;
+    }
+
+    private void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
+    {
+        e.NewText = "Scrap a Card";
     }
 
     public override async Task BeforeRewardsOffered(Player player, IReadOnlyList<Reward> rewards)
@@ -209,6 +220,10 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
             await UpdateGadget(card);
         }
 
+        if (player.NetId == LocalContext.NetId)
+        {
+            BetterHooks.ModifyCardSelectionScreenTitle -= BetterHooks_ModifyCardSelectionScreenTitle;
+        }
         await DoNext();
     }
 
