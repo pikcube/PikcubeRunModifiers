@@ -196,7 +196,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
         return false;
     }
 
-    private void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
+    private static void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
     {
         e.NewText = "Scrap a Card";
     }
