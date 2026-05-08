@@ -187,13 +187,13 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
             return false;
         }
 
-        if (player.NetId == LocalContext.NetId)
+        if (Owner.NetId == LocalContext.NetId)
         {
             BetterHooks.ModifyCardSelectionScreenTitle += BetterHooks_ModifyCardSelectionScreenTitle;
         }
 
         GetScrapOptions();
-        return false;
+        return true;
     }
 
     private static void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
@@ -201,7 +201,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
         e.NewText = "Scrap a Card";
     }
 
-    public override async Task BeforeRewardsOffered(Player player, IReadOnlyList<Reward> rewards)
+    public override async Task AfterModifyingRewards()
     {
         if (Owner.Relics.OfType<Gadget>().First() != this)
         {
@@ -220,12 +220,13 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
             await UpdateGadget(card);
         }
 
-        if (player.NetId == LocalContext.NetId)
+        await DoNext();
+        if (Owner.NetId == LocalContext.NetId)
         {
             BetterHooks.ModifyCardSelectionScreenTitle -= BetterHooks_ModifyCardSelectionScreenTitle;
         }
-        await DoNext();
     }
+
 
     private async Task DoNext()
     {

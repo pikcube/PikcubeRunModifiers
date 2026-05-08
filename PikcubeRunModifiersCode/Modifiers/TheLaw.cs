@@ -27,6 +27,7 @@ using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 using System.Data;
 using System.Reflection;
 using System.Text.Json;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using Pikcube.Common.Extensions;
 
@@ -83,18 +84,24 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
             return Task.CompletedTask;
         }
 
+        if (merchantRoom.Inventory.Player.Relics.Any(r => r is LordsParasol))
+        {
+            //I don't even want to try and figure out how these interact, and it's not like The Lords Parasol is ever going to not purchase the Law Card
+            return Task.CompletedTask;
+        }
+
         CardModel lawCard = CardModel.FromSerializable(blueprint);
 
-        if (merchantRoom.Inventory.CharacterCardEntries.Any(cardEntry =>
-                (cardEntry.CreationResult?.Card.CanonicalInstance == lawCard.CanonicalInstance) & cardEntry.EnoughGold))
+        if (merchantRoom.Inventory.CharacterCardEntries.Any(cardEntry => (cardEntry.CreationResult?.Card.CanonicalInstance == lawCard.CanonicalInstance) & cardEntry.EnoughGold))
         {
-            TaskHelper.RunSafely(PurchaseLawCard(merchantRoom.Inventory, lawCard.CanonicalInstance));
+            TaskHelper.RunSafely(ForcePurchaseLawCard(merchantRoom.Inventory, lawCard.CanonicalInstance));
         }
+
         return Task.CompletedTask;
     }
 
     //Code shamelessly stolen from lord's parasol
-    private static async Task PurchaseLawCard(MerchantInventory inventory, CardModel lawCardCanonicalInstance)
+    private static async Task ForcePurchaseLawCard(MerchantInventory inventory, CardModel lawCardCanonicalInstance)
     {
         bool uiBlocked = false;
         NRun? nRun = NRun.Instance;
@@ -176,16 +183,14 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
             Player p = eventModel.Owner ?? throw new NoNullAllowedException();
 
             CardModel? strike = p.Deck.Cards.FirstOrDefault(c => c.Tags.Contains(CardTag.Strike) && c.Rarity == CardRarity.Basic);
-            if (strike is null)
+            CardModel? defend = p.Deck.Cards.FirstOrDefault(c => c.Tags.Contains(CardTag.Defend) && c.Rarity == CardRarity.Basic);
+
+            if (strike is null || defend is null)
             {
                 return;
             }
 
-            CardModel? defend = p.Deck.Cards.FirstOrDefault(c => c.Tags.Contains(CardTag.Defend) && c.Rarity == CardRarity.Basic);
-            if (defend is null)
-            {
-                return;
-            }
+            
 
             CardModel? added = (await CardSelectCmd.FromSimpleGrid(new BlockingPlayerChoiceContext(),
                 [.. p.Character.CardPool.AllCards.Where(Filter)], p,
@@ -198,8 +203,8 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
                 return;
             }
 
-            await CardCmd.Transform(strike, p.RunState.CreateCard(added.CanonicalInstance, p), CardPreviewStyle.GridLayout);
-            await CardCmd.Transform(defend, p.RunState.CreateCard(added.CanonicalInstance, p), CardPreviewStyle.GridLayout);
+            await CardCmd.Transform(strike, added.CreateNewInstance(p), CardPreviewStyle.GridLayout);
+            await CardCmd.Transform(defend, added.CreateNewInstance(p), CardPreviewStyle.GridLayout);
 
             LawCardBlueprint.Add(p.NetId, p.RunState.CreateCard(added.CanonicalInstance, p).ToSerializable());
         };
@@ -247,8 +252,7 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
         {
             if (!cardReward.IsPopulated)
             {
-                //Warning, never do this, I just happen to know this function always runs synchronously
-                cardReward.Populate().GetAwaiter().GetResult();
+                cardReward.Populate();
             }
 
             CardModel? lawCardRewardItem = cardReward.Cards.FirstOrDefault(c => c.CanonicalInstance == lawCard.CanonicalInstance);
@@ -283,8 +287,8 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
         }
 
         CardRewardAlternative newReroll = new("REROLL", async () =>
-        {
-            await cardReward.Reroll();
+        { 
+            cardReward.Reroll();
 
             CardModel? lawCardRewardItem =
                 cardReward.Cards.FirstOrDefault(c => c.CanonicalInstance == lawCard.CanonicalInstance);
