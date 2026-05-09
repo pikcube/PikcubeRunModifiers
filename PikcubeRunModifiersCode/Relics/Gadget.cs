@@ -20,33 +20,39 @@ using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using System.Data;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Helpers;
 using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
 
 [Pool(typeof(SharedRelicPool))]
-public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
+public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreatingNewRunListener, IRunLoadedFromSaveListener
 {
     private readonly List<SerializableCard> _cachedCardsPlayed = [];
 
     static Gadget()
     {
         SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(Gadget));
+        BetterHooks.AfterRunInitialized += BetterHooks_AfterRunInitialized;
     }
 
-    protected override void AfterCloned()
+    private static void BetterHooks_AfterRunInitialized(RunState runState)
     {
-        base.AfterCloned();
-        BetterHooks.AfterRunLoadedFromSave += BetterHooks_AfterRunLoadedFromSave;
-        BetterHooks.AfterCreatingNewRun += BetterHooks_AfterCreatingNewRun;
+        BetterHooks.ModifyCardSelectionScreenTitle -= BetterHooks_ModifyCardSelectionScreenTitle;
     }
 
-    private void BetterHooks_AfterCreatingNewRun(RunState runState, IReadOnlyList<Player> players, IReadOnlyList<ActModel> acts, IReadOnlyList<ModifierModel> modifiers, GameMode gameMode, int ascensionLevel, string seed)
+    private static void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
+    {
+        e.NewText = "Scrap a Card";
+    }
+
+    public void AfterCreatingNewRun(RunState runState, IReadOnlyList<Player> players, IReadOnlyList<ActModel> acts, IReadOnlyList<ModifierModel> modifiers,
+        GameMode gameMode, int ascensionLevel, string seed)
     {
         GetGadget();
     }
 
-    private void BetterHooks_AfterRunLoadedFromSave(RunState runState, SerializableRun serializableRun)
+    public void AfterRunLoadedFromSave(RunState runState, SerializableRun save)
     {
         if (!IsMutable)
         {
@@ -175,44 +181,20 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
         return Task.CompletedTask;
     }
 
-    public override bool TryModifyRewards(Player player, List<Reward> rewards, AbstractRoom? room)
+    public override Task AfterCombatVictoryEarly(CombatRoom room)
     {
-        if (Owner.Relics.OfType<Gadget>().First() != this)
-        {
-            return false;
-        }
-
-        if (TurnCoutner == 0)
-        {
-            return false;
-        }
-
         if (Owner.NetId == LocalContext.NetId)
         {
             BetterHooks.ModifyCardSelectionScreenTitle += BetterHooks_ModifyCardSelectionScreenTitle;
         }
 
+
         GetScrapOptions();
-        return true;
+        return Task.CompletedTask;
     }
 
-    private static void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
+    public override async Task AfterCombatVictory(CombatRoom room)
     {
-        e.NewText = "Scrap a Card";
-    }
-
-    public override async Task AfterModifyingRewards()
-    {
-        if (Owner.Relics.OfType<Gadget>().First() != this)
-        {
-            return;
-        }
-
-        if (TurnCoutner == 0)
-        {
-            return;
-        }
-
         CardModel? card = await ScrapACardTask;
         ScrapACardTask = Task.FromResult<CardModel?>(null);
         if (card is not null)
@@ -220,47 +202,10 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
             await UpdateGadget(card);
         }
 
-        await DoNext();
         if (Owner.NetId == LocalContext.NetId)
         {
             BetterHooks.ModifyCardSelectionScreenTitle -= BetterHooks_ModifyCardSelectionScreenTitle;
         }
-    }
-
-
-    private async Task DoNext()
-    {
-        using IEnumerator<Gadget> itterator = Owner.Relics.OfType<Gadget>().GetEnumerator();
-        while (itterator.MoveNext())
-        {
-            if (itterator.Current != this)
-            {
-                continue;
-            }
-
-            break;
-        }
-
-        if (itterator.MoveNext())
-        {
-            await itterator.Current.DoScrap();
-        }
-    }
-
-    private async Task DoScrap()
-    {
-        if (TurnCoutner == 0)
-        {
-            return;
-        }
-        GetScrapOptions();
-        CardModel? card = await ScrapACardTask;
-        ScrapACardTask = Task.FromResult<CardModel?>(null);
-        if (card is not null)
-        {
-            await UpdateGadget(card);
-        }
-        await DoNext();
     }
 
     private void InitDefault()
@@ -317,7 +262,6 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener
 
         PlayerChoiceContext context = new BlockingPlayerChoiceContext();
 
-        //todo Hack this to fix the text
         ScrapACardTask = CardSelectCmd.FromChooseACardScreen(context, cards, Owner);
     }
 
