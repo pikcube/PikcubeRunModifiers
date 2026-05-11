@@ -47,13 +47,19 @@ public class LawCardReward(CardReward baseCardReward, CardModel target) : CardRe
             {
                 CardPileAddResult result = results.Single(c => c.cardAdded == card);
                 CardCmd.PreviewCardPileAdd(result, delayTimeBasedOnIndex);
-                RunManager.Instance.RewardSynchronizer.SyncLocalObtainedCard(card);
+                if (player.NetId == LocalContext.NetId)
+                {
+                    RunManager.Instance.RewardSynchronizer.SyncLocalObtainedCard(card);
+                }
             }
             else
             {
                 player.RunState.CurrentMapPointHistoryEntry?.GetEntry(LocalContext.NetId ?? 0).CardChoices.Add(new CardChoiceHistoryEntry(card, false));
                 RunManager.Instance.RewardSynchronizer.SyncLocalSkippedCard(card);
-                ShowAndDestoryCard(card, delayTimeBasedOnIndex);
+                if (player.NetId == LocalContext.NetId)
+                {
+                    ShowAndDestoryCard(card, delayTimeBasedOnIndex);
+                }
             }
         }
     }
