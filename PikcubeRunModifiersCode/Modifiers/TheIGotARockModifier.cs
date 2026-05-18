@@ -1,5 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Merchant;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Potions;
 using MegaCrit.Sts2.Core.Models.Relics;
@@ -10,7 +12,7 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class TheIGotARockModifier() : PikcubeRunModifierModel(CustomRunType.Bad, "I Got a Rock")
+public class TheIGotARockModifier() : PikcubeRunModifierModel(CustomRunType.Bad, "I Got a Rock"), IModifyMerchantPotionResult
 {
     static TheIGotARockModifier()
     {
@@ -60,5 +62,10 @@ public class TheIGotARockModifier() : PikcubeRunModifierModel(CustomRunType.Bad,
         }
 
         return isModified;
+    }
+
+    public void ModifyMerchantPotionResult(MerchantPotionEntry entry, ModifyMerchantPotionResultArgs args)
+    {
+        args.NewPotion = ModelDb.Potion<PotionShapedRock>();
     }
 }

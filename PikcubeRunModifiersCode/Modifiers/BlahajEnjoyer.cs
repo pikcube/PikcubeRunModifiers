@@ -1,8 +1,11 @@
 ﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Utility;
@@ -42,5 +45,25 @@ public class BlahajEnjoyer() : PikcubeRunModifierModel(CustomRunType.Bad, "Blaha
         }
         bool flag = card != null;
         return flag;
+    }
+
+    public void ModifyRemovalTitle(ref LocString title)
+    {
+        if (!RunState.Modifiers.Contains(this))
+        {
+            return;
+        }
+        title = new LocString("modifiers", "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.removalTitle");
+    }
+
+    public void ModifyRemovalDescription(ref LocString description)
+    {
+        if (!RunState.Modifiers.Contains(this))
+        {
+            return;
+        }
+        description = AscensionHelper.HasAscension(AscensionLevel.Inflation) ? 
+            new LocString("modifiers", "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.removalDescriptionTwo") : 
+            new LocString("modifiers", "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.removalDescription");
     }
 }
