@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.RelicPools;
-using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
@@ -20,7 +19,6 @@ using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using System.Data;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Helpers;
 using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;

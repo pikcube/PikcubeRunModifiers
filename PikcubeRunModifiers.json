@@ -13,7 +13,7 @@
     },
     {
       "id": "Pikcube.Common",
-      "min_version": "v0.1.48"
+      "min_version": "v0.1.50"
     }
   ],
   "affects_gameplay": true
