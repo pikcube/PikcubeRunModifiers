@@ -6,7 +6,7 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Enchantments;
 
 public class Sticky : CustomEnchantmentModel
 {
-    protected override string? CustomIconPath => $"res://{MainFile.ModId}/images/enchantments/{nameof(Sticky).ToLowerInvariant()}.png";
+    protected override string CustomIconPath => $"res://{MainFile.ModId}/images/enchantments/{nameof(Sticky).ToLowerInvariant()}.png";
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(CardKeyword.Innate)

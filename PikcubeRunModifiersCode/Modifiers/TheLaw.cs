@@ -119,7 +119,7 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
                 nRun.GlobalUi.TopBar.Map.Disable();
                 nRun.GlobalUi.TopBar.Deck.Disable();
                 nMapScreen.SetTravelEnabled(false);
-                double num = await nRun.AwaitProcessFrame();
+                await nRun.AwaitProcessFrame();
                 uiBlocked = true;
                 nMerchantRoom.Inventory.BlockInput();
                 await Cmd.Wait(0.75f);
@@ -176,7 +176,7 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
 
     public Dictionary<ulong, SerializableCard> LawCardBlueprint { get; set; } = [];
 
-    public override Func<Task>? GenerateNeowOption(EventModel eventModel)
+    public override Func<Task> GenerateNeowOption(EventModel eventModel)
     {
         return async () =>
         {

@@ -16,12 +16,12 @@ public class Heirloom() : PikcubeRunModifierModel(CustomRunType.Good, "Heirloom"
     public override LocString NeowOptionTitle => Title;
     public override LocString NeowOptionDescription => Description;
     
-    public override Func<Task>? GenerateNeowOption(EventModel eventModel)
+    public override Func<Task> GenerateNeowOption(EventModel eventModel)
     {
         return async () =>
         {
             Player p = eventModel.Owner ?? throw new NoNullAllowedException();
-            RelicModel? pullFromFront = p.RelicGrabBag.PullFromFront(RelicRarity.Rare, RunState) ?? ModelDb.Relic<Circlet>();
+            RelicModel pullFromFront = p.RelicGrabBag.PullFromFront(RelicRarity.Rare, RunState) ?? ModelDb.Relic<Circlet>();
             await RelicCmd.Obtain(pullFromFront.ToMutable(), p);
         };
     }

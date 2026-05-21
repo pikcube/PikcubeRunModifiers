@@ -76,7 +76,7 @@ public class LawCardReward(CardReward baseCardReward, CardModel target) : CardRe
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
         tween.TweenInterval(delayTimeBasedOnIndex);
-        tween.TweenCallback(Callable.From((Action)(() => { NRun.Instance?.GlobalUi.AddChildSafely(NExhaustVfx.Create(nCard)!); })));
+        tween.TweenCallback(Callable.From((Action)(() => { NRun.Instance.GlobalUi.AddChildSafely(NExhaustVfx.Create(nCard)!); })));
         tween.TweenProperty(nCard, (NodePath)"modulate", StsColors.exhaustGray, 
             SaveManager.Instance.PrefsSave.FastMode == FastModeType.Fast ? 0.20000000298023224 : 0.30000001192092896);
         tween.TweenCallback(Callable.From(nCard.QueueFree));

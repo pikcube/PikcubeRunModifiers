@@ -25,7 +25,7 @@ public class FiftyFifty() : PikcubeRunModifierModel(CustomRunType.Bad, "50/50")
             return;
         }
 
-        await Task.WhenAll(player.PlayerCombatState.DrawPile.Cards.Where((c, index) => index % 2 == 1).ToArray()
+        await Task.WhenAll(player.PlayerCombatState.DrawPile.Cards.Where((_, index) => index % 2 == 1).ToArray()
             .Select(async (card, index) =>
             {
                 try
@@ -36,7 +36,7 @@ public class FiftyFifty() : PikcubeRunModifierModel(CustomRunType.Bad, "50/50")
                     }
 
                     //Chairon's Ashes being an automatic win button is only fun the first time, so let's avoid triggering on exhaust hooks
-                    CardPileAddResult cardPileAddResult = await CardPileCmd.Add(card, PileType.Exhaust);
+                    await CardPileCmd.Add(card, PileType.Exhaust);
                     CombatManager.Instance.History.CardExhausted(combatState, card);
                 }
                 catch (Exception e)

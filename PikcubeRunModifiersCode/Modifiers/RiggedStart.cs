@@ -8,7 +8,7 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 public class RiggedStart() : PikcubeRunModifierModel(CustomRunType.None, "Rigged Start")
 {
-    public override Func<Task>? GenerateNeowOption(EventModel eventModel)
+    public override Func<Task> GenerateNeowOption(EventModel eventModel)
     {
         return async () =>
         {
@@ -31,13 +31,5 @@ public class RiggedStart() : PikcubeRunModifierModel(CustomRunType.None, "Rigged
 
             await new RewardsSet(p).WithCustomRewards([linkedRewards]).Offer();
         };
-    }
-}
-
-public class PikcubeLinkedRewardSet(List<Reward> rewards, Player player) : LinkedRewardSet(rewards, player)
-{
-    protected override Task<bool> OnSelect()
-    {
-        return base.OnSelect();
     }
 }

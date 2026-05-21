@@ -50,7 +50,7 @@ public class TheIGotARockModifier() : PikcubeRunModifierModel(CustomRunType.Bad,
         bool isModified = false;
         foreach (Reward reward in rewards.ToArray())
         {
-            if (reward is not PotionReward pw)
+            if (reward is not PotionReward)
             {
                 continue;
             }

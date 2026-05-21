@@ -16,7 +16,7 @@ public class PeakGaming() : PikcubeRunModifierModel(CustomRunType.Bad, "Peak Gam
         new EventSpawnManager().RegisterRule<DollRoom>(Predicates.UnlessModifierPresent<PeakGaming>);
     }
 
-    public bool IsNopeModeEnabled { get; set; } = false;
+    public bool IsNopeModeEnabled { get; set; }
     private readonly List<CardModel> _cards = [];
 
     public override bool ShouldAddToDeck(CardModel card)
