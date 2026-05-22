@@ -79,22 +79,23 @@ public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
 
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        if (room is not MerchantRoom merchantRoom || !LawCardBlueprint.TryGetValue(merchantRoom.Inventory.Player.NetId, out SerializableCard? blueprint))
+        if (room is not MerchantRoom merchantRoom || !LawCardBlueprint.TryGetValue(merchantRoom.GetLocalInventory().Player.NetId, out SerializableCard? blueprint))
         { 
             return Task.CompletedTask;
         }
 
-        if (merchantRoom.Inventory.Player.Relics.Any(r => r is LordsParasol))
+
+        if (merchantRoom.GetLocalInventory().Player.Relics.Any(r => r is LordsParasol))
         {
             //I don't even want to try and figure out how these interact, and it's not like The Lords Parasol is ever going to not purchase the Law Card
             return Task.CompletedTask;
         }
 
-        CardModel lawCard = CardModel.FromSerializable(blueprint);
+        CardModel lawCard = CardModel.FromSerializable(blueprint ?? throw new NoNullAllowedException());
 
-        if (merchantRoom.Inventory.CharacterCardEntries.Any(cardEntry => (cardEntry.CreationResult?.Card.CanonicalInstance == lawCard.CanonicalInstance) & cardEntry.EnoughGold))
+        if (merchantRoom.GetLocalInventory().CharacterCardEntries.Any(cardEntry => (cardEntry.CreationResult?.Card.CanonicalInstance == lawCard.CanonicalInstance) & cardEntry.EnoughGold))
         {
-            TaskHelper.RunSafely(ForcePurchaseLawCard(merchantRoom.Inventory, lawCard.CanonicalInstance));
+            TaskHelper.RunSafely(ForcePurchaseLawCard(merchantRoom.GetLocalInventory(), lawCard.CanonicalInstance));
         }
 
         return Task.CompletedTask;
