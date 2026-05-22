@@ -3,17 +3,17 @@
   "name": "PikcubeRunModifiers",
   "author": "Pikcube",
   "description": "Slay the Spire 2 character mod created from a template for use with BaseLib",
-  "version": "v0.0.2",
+  "version": "v0.0.3",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "v3.1.2"
+      "min_version": "v3.1.4"
     },
     {
       "id": "Pikcube.Common",
-      "min_version": "v0.1.50"
+      "min_version": "v0.1.51"
     }
   ],
   "affects_gameplay": true
