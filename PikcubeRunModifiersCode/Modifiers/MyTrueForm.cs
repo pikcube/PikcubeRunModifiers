@@ -14,11 +14,11 @@ public class MyTrueForm() : PikcubeRunModifierModel(CustomRunType.Good, "My True
     {
         foreach (Player p in runState.Players)
         {
-            CardPileCmd.Add(DemonForm.CreateInstance(p), PileType.Deck);
-            CardPileCmd.Add(SerpentForm.CreateInstance(p), PileType.Deck);
-            CardPileCmd.Add(VoidForm.CreateInstance(p), PileType.Deck);
-            CardPileCmd.Add(ReaperForm.CreateInstance(p), PileType.Deck);
-            CardPileCmd.Add(EchoForm.CreateInstance(p), PileType.Deck);
+            CardPileCmd.Add(DemonForm.Create(p), PileType.Deck);
+            CardPileCmd.Add(SerpentForm.Create(p), PileType.Deck);
+            CardPileCmd.Add(VoidForm.Create(p), PileType.Deck);
+            CardPileCmd.Add(ReaperForm.Create(p), PileType.Deck);
+            CardPileCmd.Add(EchoForm.Create(p), PileType.Deck);
         }
     }
 }

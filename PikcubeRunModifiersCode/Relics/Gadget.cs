@@ -121,7 +121,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
                                           ?? throw new NoNullAllowedException();
     private static LocString ScrapDescription => LocString.GetIfExists(_locTable, "PIKCUBERUNMODIFIERS-GADGET.scrapKeyword")
                                                  ?? throw new NoNullAllowedException();
-    public CardHoverTip? CurrentGadgetCardHoverTip { get; set; } = new(Jackpot.CreateWithoutOwner());
+    public CardHoverTip? CurrentGadgetCardHoverTip { get; set; } = new(Jackpot.Create());
 
 
     public string WhenGadget
@@ -208,7 +208,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
 
     private void InitDefault()
     {
-        CurrentGadgetBlueprint = Jackpot.CreateInstance(Owner).ToSerializable();
+        CurrentGadgetBlueprint = Jackpot.Create(Owner).ToSerializable();
         InitComplete = true;
         GetGadget();
     }
