@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -10,7 +11,8 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class PeakGaming() : PikcubeRunModifierModel
+[UsedImplicitly]
+public class PeakGaming : PikcubeRunModifierModel
 {
     public override ModifierAlignment Alignment => ModifierAlignment.Bad;
     static PeakGaming()

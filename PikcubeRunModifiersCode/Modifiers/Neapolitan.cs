@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
@@ -7,7 +8,8 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class Neapolitan() : PikcubeRunModifierModel
+[UsedImplicitly]
+public class Neapolitan : PikcubeRunModifierModel
 {
     public override ModifierAlignment Alignment => ModifierAlignment.Good;
 
