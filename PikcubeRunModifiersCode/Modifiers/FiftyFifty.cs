@@ -1,16 +1,17 @@
-﻿using JetBrains.Annotations;
+﻿using BaseLib.Abstracts;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class FiftyFifty() : PikcubeRunModifierModel(CustomRunType.Bad, "50/50")
+public class FiftyFifty : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Bad;
     public override bool ShouldReceiveCombatHooks => true;
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)

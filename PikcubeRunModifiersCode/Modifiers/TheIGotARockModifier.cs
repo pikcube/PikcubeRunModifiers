@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Merchant;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -11,8 +12,10 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class TheIGotARockModifier() : PikcubeRunModifierModel(CustomRunType.Bad, "I Got a Rock"), IModifyMerchantPotionResult
+public class TheIGotARockModifier : PikcubeRunModifierModel, IModifyMerchantPotionResult
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Bad;
+
     static TheIGotARockModifier()
     {
         new RelicSpawnManager().RegisterRule<PetrifiedToad>(Predicates.UnlessModifierPresent<TheIGotARockModifier>);

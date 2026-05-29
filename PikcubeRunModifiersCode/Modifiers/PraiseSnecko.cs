@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
@@ -6,8 +7,10 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class PraiseSnecko() : PikcubeRunModifierModel(CustomRunType.Good, "Praise Snecko")
+public class PraiseSnecko : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
+
     static PraiseSnecko()
     {
         new RelicSpawnManager().RegisterRule<SneckoEye>(Predicates.UnlessModifierPresent<PraiseSnecko>);

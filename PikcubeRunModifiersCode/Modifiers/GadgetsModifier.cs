@@ -1,16 +1,17 @@
-﻿using JetBrains.Annotations;
+﻿using BaseLib.Abstracts;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
-using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class GadgetsModifier() : PikcubeRunModifierModel(CustomRunType.Good, "Gadget")
+public class GadgetsModifier : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
 
     protected override void AfterRunCreated(RunState runState)
     {

@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -9,8 +10,9 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class PeakGaming() : PikcubeRunModifierModel(CustomRunType.Bad, "Peak Gaming")
+public class PeakGaming() : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Bad;
     static PeakGaming()
     {
         new EventSpawnManager().RegisterRule<DollRoom>(Predicates.UnlessModifierPresent<PeakGaming>);

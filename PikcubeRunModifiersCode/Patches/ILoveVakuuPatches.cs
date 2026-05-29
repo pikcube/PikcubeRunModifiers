@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
@@ -15,7 +16,7 @@ public static class LoveVakuuPatches
         BetterHooks.AfterRunInitialized += BetterHooks_AfterRunInitialized;
     }
 
-    private static void BetterHooks_AfterRunInitialized(MegaCrit.Sts2.Core.Runs.RunState runState)
+    private static void BetterHooks_AfterRunInitialized(RunState runState)
     {
         ModifyAncientForAct = null;
         ModifyGenerateInitialOptions = null;

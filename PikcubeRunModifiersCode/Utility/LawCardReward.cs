@@ -1,7 +1,9 @@
-﻿using Godot;
+﻿using System.Data;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
@@ -12,8 +14,6 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Runs.History;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
-using System.Data;
-using MegaCrit.Sts2.Core.Entities.Players;
 using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;

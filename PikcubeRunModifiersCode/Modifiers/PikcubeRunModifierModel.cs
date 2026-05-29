@@ -1,15 +1,10 @@
-﻿using Pikcube.Common.Abstracts;
-using Pikcube.Common.Utility;
+﻿
+
+using BaseLib.Abstracts;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public abstract class PikcubeRunModifierModel : CustomRunModifierModel
+public abstract class PikcubeRunModifierModel : CustomModifierModel
 {
-    protected PikcubeRunModifierModel(CustomRunType type, string modifierName) : base(type, new CustomRunModifierInfo(MainFile.ModId, modifierName))
-    {
-    }
 
-    protected PikcubeRunModifierModel(CustomRunType type, CustomRunModifierInfo info) : base(type, info)
-    {
-    }
 }

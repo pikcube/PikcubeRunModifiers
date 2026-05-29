@@ -1,19 +1,21 @@
-﻿using HarmonyLib;
+﻿using System.Reflection;
+using BaseLib.Abstracts;
+using HarmonyLib;
 using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Runs;
-using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
-using System.Reflection;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class TheILoveVakuuModifier() : PikcubeRunModifierModel(CustomRunType.Good, "I Love Vakuu")
+public class TheILoveVakuuModifier : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
+
     private Dictionary<ActModel, RunState> ActsToModify { get; } = [];
     private List<EventOption> ModifierOptions { get; } = [];
     private Dictionary<ulong, IReadOnlyList<EventOption>> OriginalVakuuOptions { get; set; } = [];

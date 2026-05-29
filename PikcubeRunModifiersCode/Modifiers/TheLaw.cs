@@ -1,4 +1,8 @@
-﻿using HarmonyLib;
+﻿using System.Data;
+using System.Reflection;
+using System.Text.Json;
+using BaseLib.Abstracts;
+using HarmonyLib;
 using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,9 +15,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Map;
@@ -22,20 +28,15 @@ using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.TestSupport;
-using Pikcube.Common.Utility;
-using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
-using System.Data;
-using System.Reflection;
-using System.Text.Json;
-using MegaCrit.Sts2.Core.Models.Relics;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using Pikcube.Common.Extensions;
+using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class TheLaw() : PikcubeRunModifierModel(CustomRunType.Good, "The Law")
+public class TheLaw : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
     static TheLaw()
     {
         SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));

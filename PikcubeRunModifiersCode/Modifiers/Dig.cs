@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using BaseLib.Abstracts;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
@@ -8,8 +9,10 @@ using Pikcube.Common.Utility;
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class Dig() : PikcubeRunModifierModel(CustomRunType.Good, "Dig!")
+public class Dig : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
+
     static Dig()
     {
         new RelicSpawnManager().RegisterRule<Shovel>(Predicates.UnlessModifierPresent<Dig>);

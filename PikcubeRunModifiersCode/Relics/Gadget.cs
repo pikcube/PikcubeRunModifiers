@@ -1,6 +1,8 @@
-﻿using BaseLib.Utils;
+﻿using System.Data;
+using BaseLib.Utils;
 using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -11,15 +13,14 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.RelicPools;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Pikcube.Common.Extensions;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
-using System.Data;
-using MegaCrit.Sts2.Core.Context;
-using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
 
@@ -39,7 +40,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
         BetterHooks.ModifyCardSelectionScreenTitle -= BetterHooks_ModifyCardSelectionScreenTitle;
     }
 
-    private static void BetterHooks_ModifyCardSelectionScreenTitle(MegaCrit.Sts2.Core.Nodes.Screens.CardSelection.NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
+    private static void BetterHooks_ModifyCardSelectionScreenTitle(NChooseACardSelectionScreen sender, ModifyCardSelectionScreenTitleArgs e)
     {
         e.NewText = "Scrap a Card";
     }

@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
@@ -6,8 +7,10 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class Neapolitan() : PikcubeRunModifierModel(CustomRunType.Good, nameof(Neapolitan))
+public class Neapolitan() : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
+
     static Neapolitan()
     {
         new RelicSpawnManager().RegisterRule<IceCream>(Predicates.UnlessModifierPresent<Neapolitan>);

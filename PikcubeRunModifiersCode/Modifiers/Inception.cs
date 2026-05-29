@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
@@ -6,8 +7,9 @@ using Pikcube.Common.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
-public class Inception() : PikcubeRunModifierModel(CustomRunType.Good, nameof(Inception))
+public class Inception : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Good;
     static Inception()
     {
         new RelicSpawnManager().RegisterRule<UnceasingTop>(Predicates.UnlessModifierPresent<Inception>);

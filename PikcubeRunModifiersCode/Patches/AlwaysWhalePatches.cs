@@ -1,8 +1,9 @@
-﻿using HarmonyLib;
+﻿using System.Reflection.Emit;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Models.Events;
+using MegaCrit.Sts2.Core.Runs;
 using Pikcube.Common.Utility;
-using System.Reflection.Emit;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
@@ -13,7 +14,7 @@ public static class AlwaysWhalePatches
         BetterHooks.AfterRunInitialized += BetterHooks_AfterRunInitialized;
     }
 
-    private static void BetterHooks_AfterRunInitialized(MegaCrit.Sts2.Core.Runs.RunState runState)
+    private static void BetterHooks_AfterRunInitialized(RunState runState)
     {
         ModifyGenerateInitialOptions = null;
     }

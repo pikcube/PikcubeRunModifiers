@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using BaseLib.Abstracts;
+using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,8 +14,10 @@ using Pikcube.Common.Utility;
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 
 [UsedImplicitly]
-public class CurseOfGreedModifier() : PikcubeRunModifierModel(CustomRunType.Bad, "Curse of Greed")
+public class CurseOfGreedModifier : PikcubeRunModifierModel
 {
+    public override ModifierAlignment Alignment => ModifierAlignment.Bad;
+
     static CurseOfGreedModifier()
     {
         RelicSpawnManager relicSpawnManager = new();
