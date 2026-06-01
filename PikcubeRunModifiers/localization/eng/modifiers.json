@@ -45,5 +45,10 @@
   "PIKCUBERUNMODIFIERS-THE_I_GOT_A_ROCK_MODIFIER.description": "All potions are rocks, start with [gold]Petrified Toad[/gold].",
   "PIKCUBERUNMODIFIERS-THE_LAW.add": "Choose a Card to Add",
   "PIKCUBERUNMODIFIERS-THE_LAW.title": "The Law",
-  "PIKCUBERUNMODIFIERS-THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single common card of your color. You must take this card whenever it is offered (excludes events)."
+  "PIKCUBERUNMODIFIERS-THE_LAW.description": "Transform a [gold]Strike[/gold] and a [gold]Defend[/gold] into any single common card of your color. You must take this card whenever it is offered (excludes events).",
+  "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.title": "Fortune Favors the Bold",
+  "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.description": "Card rewards are replaced with the Crystal Ball event.",
+  "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardGoldDescription": "Pay [blue]{Gold:diff()}[/blue] to Divine 3 times.",
+  "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardDebtDescription": "Gain a [gold]Debt[/gold] to Divine 6 times."
+
 }

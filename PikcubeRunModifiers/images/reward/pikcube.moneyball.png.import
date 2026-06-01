@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgst0wcdevkm"
-path="res://.godot/imported/pikcuberunmodifiers-the_i_got_a_rock_modifier.png-9e696289c3867f1f3413663af4cd0b52.ctex"
+uid="uid://cejorylvk0hng"
+path="res://.godot/imported/pikcube.moneyball.png-3d603f733cec6098cc4b82317181c46a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-the_i_got_a_rock_modifier.png"
-dest_files=["res://.godot/imported/pikcuberunmodifiers-the_i_got_a_rock_modifier.png-9e696289c3867f1f3413663af4cd0b52.ctex"]
+source_file="res://PikcubeRunModifiers/images/reward/pikcube.moneyball.png"
+dest_files=["res://.godot/imported/pikcube.moneyball.png-3d603f733cec6098cc4b82317181c46a.ctex"]
 
 [params]
 

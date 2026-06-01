@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgst0wcdevkm"
-path="res://.godot/imported/pikcuberunmodifiers-the_i_got_a_rock_modifier.png-9e696289c3867f1f3413663af4cd0b52.ctex"
+uid="uid://cp5r70uvy7yqn"
+path="res://.godot/imported/pikcuberunmodifiers-fortune_favors_the_bold.png-d69dfe18da4c475483369882a1bc5d38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-the_i_got_a_rock_modifier.png"
-dest_files=["res://.godot/imported/pikcuberunmodifiers-the_i_got_a_rock_modifier.png-9e696289c3867f1f3413663af4cd0b52.ctex"]
+source_file="res://PikcubeRunModifiers/images/modifiers/pikcuberunmodifiers-fortune_favors_the_bold.png"
+dest_files=["res://.godot/imported/pikcuberunmodifiers-fortune_favors_the_bold.png-d69dfe18da4c475483369882a1bc5d38.ctex"]
 
 [params]
 
