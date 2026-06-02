@@ -13,7 +13,7 @@ using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
 [HarmonyPatch(typeof(OneOffSynchronizer), "OfferCrystalSphereRewards")]
-public class ModifyCrystalSphereRewardsPatch
+public static class ModifyCrystalSphereRewardsPatch
 {
     public delegate void ModifyCrystalSphereRewardsHandler(ref List<Reward> rewards, Player owner);
 

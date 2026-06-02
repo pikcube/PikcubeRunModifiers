@@ -25,11 +25,17 @@ public class MinigameReward : CustomReward
     public List<Reward> Original { get; set; }
 
     public int Price { get; }
+    public int Mode { get; }
 
-    public MinigameReward(Player player, List<Reward> original, int price) : base(player)
+    public MinigameReward(Player player, List<Reward> original, int price, int i) : base(player)
     {
+        if (i < 1)
+        {
+            i = 1;
+        }
         Original = original;
         Price = price;
+        Mode = i;
         if (Price > 0)
         {
             return;
@@ -59,11 +65,19 @@ public class MinigameReward : CustomReward
     {
         if (Price > 0)
         {
-            Player.Gold -= Price;
+            int realPrice = Price / Mode;
+            Player.Gold -= realPrice;
         }
         else
         {
-            await CardPileCmd.AddCurseToDeck<Debt>(Player);
+            if (Mode < 2)
+            {
+                await CardPileCmd.AddCurseToDeck<Debt>(Player);
+            }
+            else
+            {
+                await CardPileCmd.AddCurseToDeck<Guilty>(Player);
+            }
         }
         await new CrystalSphereMinigame(Player, Player.PlayerRng.Rewards, Price < 0 ? 6 : 3).PlayMinigame();
         return true;
@@ -80,16 +94,16 @@ public class MinigameReward : CustomReward
     public override int RewardsSetIndex => 10;
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
 
-    private static CustomReward Deserialize(SerializableReward save, Player player)
+    private static MinigameReward Deserialize(SerializableReward save, Player player)
     {
         string? rewardString = save.SpecialCard?.Props?.strings?.First().value;
         if (rewardString is null)
         {
-            return new MinigameReward(player, [], save.GoldAmount);
+            return new MinigameReward(player, [], save.GoldAmount, save.OptionCount);
         }
 
         List<SerializableReward> rewards = JsonSerializer.Deserialize<List<SerializableReward>>(rewardString) ?? [];
-        return new MinigameReward(player, [.. rewards.Select(sr => FromSerializable(sr, player))], save.GoldAmount);
+        return new MinigameReward(player, [.. rewards.Select(sr => FromSerializable(sr, player))], save.GoldAmount, save.OptionCount);
     }
 
     public override SerializableReward ToSerializable()
@@ -109,7 +123,8 @@ public class MinigameReward : CustomReward
                     {
                         strings = [new SavedProperties.SavedProperty<string>("pikcube.r", "{}")]
                     }
-                }
+                },
+                OptionCount = Mode
             };
         }
         string rewards = JsonSerializer.Serialize(Original.Select(r => r.ToSerializable()));
@@ -132,16 +147,31 @@ public class MinigameReward : CustomReward
     private LocString GetGoldString()
     {
         LocString goldString = new("modifiers", "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardGoldDescription");
-        goldString.Add(new DynamicVar("Gold", Price));
+        int realPrice = Price / Mode;
+        goldString.Add(new DynamicVar("Gold", realPrice));
         return goldString;
     }
 
-    private static LocString GetDebtString()
+    private LocString GetDebtString()
     {
-        return new LocString("modifiers", "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardDebtDescription");
+        LocString debtString = new("modifiers", "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardDebtDescription");
+        debtString.Add(Mode == 1 ? new StringVar("Curse", "Debt") : new StringVar("Curse", "Guilty"));
+        return debtString;
     }
 
     public override bool IsPopulated => true;
 
-    public override IEnumerable<IHoverTip> HoverTips => Price < 0 ? [HoverTipFactory.FromCard<Debt>()] : [];
+    public override IEnumerable<IHoverTip> HoverTips => Price < 0 ? GetCurseHoverTip() : [];
+
+    private IEnumerable<IHoverTip> GetCurseHoverTip()
+    {
+        if (Mode < 2)
+        {
+            return [HoverTipFactory.FromCard<Debt>()];
+        }
+        else
+        {
+            return [HoverTipFactory.FromCard<Guilty>()];
+        }
+    }
 }

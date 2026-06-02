@@ -2,6 +2,8 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using Pikcube.Common.Utility;
+using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace PikcubeRunModifiers
@@ -17,8 +19,14 @@ namespace PikcubeRunModifiers
         {
             Harmony harmony = new(ModId);
 
-
             harmony.PatchAll();
+
+            BetterHooks.AfterOneTimeInitialization += BetterHooks_AfterOneTimeInitialization;
+        }
+
+        private static void BetterHooks_AfterOneTimeInitialization()
+        {
+            _ = PikcubeRunModifierModel.ModifierMap;
         }
     }
 }

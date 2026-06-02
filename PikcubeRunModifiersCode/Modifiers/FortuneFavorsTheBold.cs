@@ -2,11 +2,15 @@
 using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models.Events;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
+using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 
@@ -17,6 +21,12 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
     static FortuneFavorsTheBold()
     {
         RewardScreenPatches.OnRewardScreenShown += RewardScreenPatches_OnRewardScreenShown;
+        RelicSpawnManager rsm = new();
+        rsm.RegisterRule<LastingCandy>(Predicates.UnlessModifierPresent<FortuneFavorsTheBold>);
+        rsm.RegisterRule<PrayerWheel>(Predicates.UnlessModifierPresent<FortuneFavorsTheBold>);
+
+        EventSpawnManager esm = new();
+        esm.RegisterRule<CrystalSphere>(Predicates.UnlessModifierPresent<FortuneFavorsTheBold>);
     }
 
     private static void RewardScreenPatches_OnRewardScreenShown(NRewardsScreen screen, RewardsSet set)
@@ -33,7 +43,7 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
     private static ConditionalWeakTable<List<Reward>, RewardsSet> RewardMap { get; } = [];
     private static ConditionalWeakTable<List<Reward>, NRewardsScreen> ScreenMap { get; } = [];
 
-    public override ModifierAlignment Alignment => ModifierAlignment.Good;
+    public override ModifierAlignment Alignment => ModifierAlignment.Bad;
     public override Task BeforeCombatStart()
     {
         IsReady = true;
@@ -66,7 +76,7 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
             PlayersModified.Add(player);
         }
 
-        rewards.RemoveAll(r => r is CardReward);
+        int i = rewards.RemoveAll(r => r is CardReward);
 
         List<Reward> original = [.. rewards];
 
@@ -79,10 +89,10 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
             {
                 price = player.Gold;
             }
-            rewards.Add(new MinigameReward(player, original, price));
+            rewards.Add(new MinigameReward(player, original, price, i));
         }
 
-        rewards.Add(new MinigameReward(player, original, -1));
+        rewards.Add(new MinigameReward(player, original, -1, i));
 
         rewards.Add(new NopeReward(player, original, rewards));
 

@@ -15,7 +15,7 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 public class AlwaysWhale : PikcubeRunModifierModel
 {
     public override ModifierAlignment Alignment => ModifierAlignment.Good;
-    public override int SortOrder => -99;
+    public override int SortOrder => -999;
 
     private List<EventOption> ModifierOptions { get; } = [];
     protected override void AfterRunCreated(RunState runState)

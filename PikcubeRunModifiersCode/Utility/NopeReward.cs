@@ -38,7 +38,7 @@ public class NopeReward(Player player, List<Reward> original, List<Reward> curre
     public override int RewardsSetIndex => 10;
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
 
-    private static CustomReward Deserialize(SerializableReward save, Player player)
+    private static NopeReward Deserialize(SerializableReward save, Player player)
     {
         string? rewardString = save.SpecialCard?.Props?.strings?.First().value;
         string? rewardString2 = save.SpecialCard?.Props?.strings?.Last().value;
