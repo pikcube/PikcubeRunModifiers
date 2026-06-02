@@ -1,4 +1,5 @@
-﻿using BaseLib.Patches.Content;
+﻿using BaseLib.Abstracts;
+using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Events.Custom.CrystalSphereEvent;
@@ -6,15 +7,16 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
+using System.Text.Json;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 
-public class MinigameReward : Reward
+public class MinigameReward : CustomReward
 {
     [CustomEnum] 
     public static RewardType CrystalBallReward = 0;
@@ -50,7 +52,7 @@ public class MinigameReward : Reward
             return;
         }
         ModifyCrystalSphereRewardsPatch.ModifyCrystalSphereRewards -= ModifyCrystalSphereRewardsPatch_ModifyCrystalSphereRewards;
-        rewards = [.. Original, .. rewards];
+        rewards = [.. rewards, ..Original];
     }
 
     protected override async Task<bool> OnSelect()
@@ -76,6 +78,54 @@ public class MinigameReward : Reward
 
     protected override RewardType RewardType => CrystalBallReward;
     public override int RewardsSetIndex => 10;
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => Deserialize;
+
+    private static CustomReward Deserialize(SerializableReward save, Player player)
+    {
+        string? rewardString = save.SpecialCard?.Props?.strings?.First().value;
+        if (rewardString is null)
+        {
+            return new MinigameReward(player, [], save.GoldAmount);
+        }
+
+        List<SerializableReward> rewards = JsonSerializer.Deserialize<List<SerializableReward>>(rewardString) ?? [];
+        return new MinigameReward(player, [.. rewards.Select(sr => FromSerializable(sr, player))], save.GoldAmount);
+    }
+
+    public override SerializableReward ToSerializable()
+    {
+        // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        // Apparently it is null‽
+        if (Original is null)
+        // ReSharper restore ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        {
+            return new SerializableReward
+            {
+                RewardType = CrystalBallReward,
+                GoldAmount = Price,
+                SpecialCard = new SerializableCard
+                {
+                    Props = new SavedProperties
+                    {
+                        strings = [new SavedProperties.SavedProperty<string>("pikcube.r", "{}")]
+                    }
+                }
+            };
+        }
+        string rewards = JsonSerializer.Serialize(Original.Select(r => r.ToSerializable()));
+        return new SerializableReward
+        {
+            RewardType = CrystalBallReward,
+            GoldAmount = Price,
+            SpecialCard = new SerializableCard
+            {
+                Props = new SavedProperties
+                {
+                    strings = [new SavedProperties.SavedProperty<string>("pikcube.r", rewards)]
+                }
+            }
+        };
+    }
 
     public override LocString Description => Price < 0 ? GetDebtString() : GetGoldString();
 

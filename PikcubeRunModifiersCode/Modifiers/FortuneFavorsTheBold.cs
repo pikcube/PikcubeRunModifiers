@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
@@ -28,6 +27,9 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
 
     public bool? IsReady { get; set; }
 
+    private List<Player> PlayersModified { get; set; } = [];
+
+
     private static ConditionalWeakTable<List<Reward>, RewardsSet> RewardMap { get; } = [];
     private static ConditionalWeakTable<List<Reward>, NRewardsScreen> ScreenMap { get; } = [];
 
@@ -35,6 +37,7 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
     public override Task BeforeCombatStart()
     {
         IsReady = true;
+        PlayersModified.Clear();
         return Task.CompletedTask;
     }
 
@@ -58,12 +61,16 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
             return false;
         }
 
+        if (!PlayersModified.Contains(player))
+        {
+            PlayersModified.Add(player);
+        }
+
         rewards.RemoveAll(r => r is CardReward);
 
         List<Reward> original = [.. rewards];
 
         rewards.Clear();
-
 
         if (player.Gold > 50)
         {
@@ -84,7 +91,10 @@ public class FortuneFavorsTheBold : PikcubeRunModifierModel
 
     public override Task AfterModifyingRewards()
     {
-        IsReady = false;
+        if (RunState.Players.Count == PlayersModified.Count)
+        {
+            IsReady = false;
+        }
         return Task.CompletedTask;
     }
 
