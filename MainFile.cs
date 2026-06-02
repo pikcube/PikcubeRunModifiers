@@ -17,6 +17,7 @@ namespace PikcubeRunModifiers
         {
             Harmony harmony = new(ModId);
 
+
             harmony.PatchAll();
         }
     }

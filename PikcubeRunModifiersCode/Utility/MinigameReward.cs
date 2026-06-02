@@ -6,7 +6,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
@@ -17,7 +19,7 @@ public class MinigameReward : Reward
     [CustomEnum] 
     public static RewardType CrystalBallReward = 0;
 
-    protected override string? IconPath => $"reward/pikcube.{(Price < 0 ? "debtball" : "moneyball")}.png".ImagePath();
+    protected override string IconPath => $"reward/pikcube.{(Price < 0 ? "debtball" : "moneyball")}.png".ImagePath();
     public List<Reward> Original { get; set; }
 
     public int Price { get; }
@@ -26,10 +28,19 @@ public class MinigameReward : Reward
     {
         Original = original;
         Price = price;
-        if (price < 0 && original.Count > 0)
+        if (Price > 0)
         {
-            ModifyCrystalSphereRewardsPatch.ModifyCrystalSphereRewards += ModifyCrystalSphereRewardsPatch_ModifyCrystalSphereRewards;
+            return;
         }
+
+        ModifyCrystalSphereRewardsPatch.ModifyCrystalSphereRewards += ModifyCrystalSphereRewardsPatch_ModifyCrystalSphereRewards;
+        RunManager.Instance.RoomEntered += Instance_RoomEntered;
+    }
+
+    private void Instance_RoomEntered()
+    {
+        ModifyCrystalSphereRewardsPatch.ModifyCrystalSphereRewards -= ModifyCrystalSphereRewardsPatch_ModifyCrystalSphereRewards;
+        RunManager.Instance.RoomEntered -= Instance_RoomEntered;
     }
 
     private void ModifyCrystalSphereRewardsPatch_ModifyCrystalSphereRewards(ref List<Reward> rewards, Player player)

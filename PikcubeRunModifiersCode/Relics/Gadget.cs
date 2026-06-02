@@ -182,6 +182,11 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
 
     public override Task AfterCombatVictoryEarly(CombatRoom room)
     {
+        if (Owner.RunState.CurrentActIndex == 2 && room.RoomType == RoomType.Boss)
+        {
+            return Task.CompletedTask;
+        }
+
         if (Owner.NetId == LocalContext.NetId)
         {
             BetterHooks.ModifyCardSelectionScreenTitle += BetterHooks_ModifyCardSelectionScreenTitle;
@@ -194,6 +199,11 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
 
     public override async Task AfterCombatVictory(CombatRoom room)
     {
+        if (Owner.RunState.CurrentActIndex == 2 && room.RoomType == RoomType.Boss)
+        {
+            return;
+        }
+
         CardModel? card = await ScrapACardTask;
         ScrapACardTask = Task.FromResult<CardModel?>(null);
         if (card is not null)

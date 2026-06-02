@@ -1,0 +1,19 @@
+﻿using HarmonyLib;
+using MegaCrit.Sts2.Core.Nodes.Screens;
+using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
+
+namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
+
+[HarmonyPatch(typeof(NRewardsScreen), nameof(NRewardsScreen.ShowScreen))]
+public class RewardScreenPatches
+{
+    public static void Postfix(NRewardsScreen __result, RewardsSet set)
+    {
+        OnRewardScreenShown?.Invoke(__result, set);
+    }
+
+    public delegate void OnRewardScreenShownHandler(NRewardsScreen screen, RewardsSet set);
+
+    public static event OnRewardScreenShownHandler? OnRewardScreenShown;
+}
