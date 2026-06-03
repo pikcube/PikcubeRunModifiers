@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using BaseLib.Abstracts;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Models.Relics;
