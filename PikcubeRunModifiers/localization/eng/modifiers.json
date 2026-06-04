@@ -7,7 +7,7 @@
   "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.removalDescription": "Transform a card from your deck. The cost of this service increases by [blue]25[/blue] for the rest of this run.",
   "PIKCUBERUNMODIFIERS-BLAHAJ_ENJOYER.removalDescriptionTwo": "Transform a card from your deck. The cost of this service increases by [blue]50[/blue] for the rest of this run.",
   "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.title": "Curse of Greed",
-  "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.description": "Start with your deck [gold]upgraded[/gold]. Every card you find is [gold]upgraded[/gold]. Cards have a [blue]50%[/blue] chance to be [gold]exhausted[/gold] for the turn instead of played. Cannot trigger more than once per turn.",
+  "PIKCUBERUNMODIFIERS-CURSE_OF_GREED_MODIFIER.description": "Start with your deck [gold]upgraded[/gold]. Every card you find is [gold]upgraded[/gold]. Cards have a [blue]50%[/blue] chance of being placed on top of your [gold]Draw[/gold pile instead of played. Cannot trigger more than once per turn.",
   "PIKCUBERUNMODIFIERS-DIG.title": "DIG!",
   "PIKCUBERUNMODIFIERS-DIG.description": "Start with a [gold]Shovel[/gold].",
   "PIKCUBERUNMODIFIERS-FIFTY_FIFTY.title": "50/50",
