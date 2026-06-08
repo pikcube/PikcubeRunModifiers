@@ -77,4 +77,6 @@ public class AlwaysWhale : PikcubeRunModifierModel
             method.Invoke(neow, [neow.InitialDescription, next]);
         }
     }
+
+    public override IEnumerable<ModifierModel> MutuallyExclusiveGroup => [ModelDb.Modifier<TheILoveVakuuModifier>()];
 }
