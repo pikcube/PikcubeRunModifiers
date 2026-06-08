@@ -24,6 +24,7 @@ public class TheILoveVakuuModifier : PikcubeRunModifierModel
     {
         ActsToModify.Clear();
         ModifierOptions.Clear();
+        OriginalVakuuOptions.Clear();
         foreach (ActModel act in RunState.Acts)
         {
             ActsToModify.Add(act, runState);
@@ -38,6 +39,7 @@ public class TheILoveVakuuModifier : PikcubeRunModifierModel
     {
         ActsToModify.Clear();
         ModifierOptions.Clear();
+        OriginalVakuuOptions.Clear();
         LoveVakuuPatches.ModifyGenerateInitialOptions -= LoveVakuuPatches_ModifyGenerateInitialOptions;
         LoveVakuuPatches.ModifyGenerateInitialOptions += LoveVakuuPatches_ModifyGenerateInitialOptions;
     }
