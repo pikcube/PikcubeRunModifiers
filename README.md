@@ -17,6 +17,7 @@ Not all of these modifiers are equally balanced, and you are encourages to mix a
 * Neapolitan: Start with Ice Cream.
 * Praise Snecko: Modifier from Slay the Spire 1, start with Snecko Eye.
 * Texas Holdem: Start with Runic Pyramid.
+* The Law: Transform a Strike and Defend into any common card you want! However, you are forced to take it if it ever shows up in a card reward.
 
 ## Current Bad Modifiers
 
