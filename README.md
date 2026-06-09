@@ -24,7 +24,7 @@ Not all of these modifiers are equally balanced, and you are encourages to mix a
 * 50/50: Ever wondered how Spire would play if you were missing half of your deck? Wonder no more, every combat, half of your deck starts in the exhaust pile.
 * Blahaj Enjoyer: The Merchant now transforms cards instead of removing them.
 * Curse of Greed: Every card in your deck is upgraded! Every card you find is upgraded! However, each card you play has a 50% chance to be put on top of your draw pile instead of being played (disappears once triggered). Heavily inspired by The Warrior's second episode of the same name from Dicey Dungeons.
-* Fortune Favors the Bold: What if instead of taking card rewards, you got to do the forutne telling minigame after every combat? You still have to play of course, and those debts will pile up fast, but don't worry about that.
+* Fortune Favors the Bold: What if instead of taking card rewards, you got to do the forutne telling minigame after every combat? You still have to pay of course, and those debts will pile up fast, but don't worry about that.
 * I Got a Rock...: All the potions have been replaced with potion shaped rocks. Start with a Petrified Toad for even more rocks.
 * Peak Gaming: Why have one card when you can have two cards? Duplicate your starting deck, and start with Bing Bong to ensure all good things come in pairs.
 * Perfect Lethal: Sometimes its fun to charge up a 1000 damage Sovereign Blade for a 3 HP slime, but today is not that day. Any attack damage beyond a perfect kill is reflected back at the attacker (the rules for what constitutes an attack are the same as what thorns uses).
