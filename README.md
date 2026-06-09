@@ -23,7 +23,7 @@ Not all of these modifiers are equally balanced, and you are encourages to mix a
 * 4 For 4: Now you get 4 energy per turn instead of 3! Unfortunately, you draw 4 cards per turn instead of 5.
 * 50/50: Ever wondered how Spire would play if you were missing half of your deck? Wonder no more, every combat, half of your deck starts in the exhaust pile.
 * Blahaj Enjoyer: The Merchant now transforms cards instead of removing them.
-* Curse of Greed: Every card in your deck is upgraded! Every card you find is upgraded! However, each card you play has a 50% chance to be put on top of your draw pile instead of being played (disappears once triggered). Heavily inspired by The Warrior's second episode of the same name from Dicey Dungeons.
+* Curse of Greed: Every card in your deck is upgraded! Every card you find is upgraded! However, each card you play has a 50% chance to be put on top of your draw pile instead of being played (chance disappears once triggered). Heavily inspired by The Warrior's second episode of the same name from Dicey Dungeons.
 * Fortune Favors the Bold: What if instead of taking card rewards, you got to do the forutne telling minigame after every combat? You still have to pay of course, and those debts will pile up fast, but don't worry about that.
 * I Got a Rock...: All the potions have been replaced with potion shaped rocks. Start with a Petrified Toad for even more rocks.
 * Peak Gaming: Why have one card when you can have two cards? Duplicate your starting deck, and start with Bing Bong to ensure all good things come in pairs.
