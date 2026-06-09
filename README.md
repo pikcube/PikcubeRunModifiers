@@ -6,7 +6,7 @@ Not all of these modifiers are equally balanced, and you are encourages to mix a
 
 ## Current Good Modifiers
 
-* Always Whale: This modifier just restores standard neow options when playing with modifiers.
+* Always Whale: This modifier just restores standard Neow options when playing with modifiers.
 * DIG!: Start with a Shovel.
 * Gadget: Ever wondered what Slay the Spire would be like if you *had* to remove one of three random cards after every single combat? No? What if that card was played for free every single turn? Sill no? Well, here you go anyways. Heavily inspired by The Inventor from Dicey Dungeons (which if you know anything about my other projects should not surprise you).
 * Heirloom: Modifier from Slay the Spire 1, start off with a random rare relic.
