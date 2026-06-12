@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Rewards;
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
 [HarmonyPatch(typeof(NRewardsScreen), nameof(NRewardsScreen.ShowScreen))]
-public class RewardScreenPatches
+public static class RewardScreenPatches
 {
     public static void Postfix(NRewardsScreen __result, RewardsSet set)
     {

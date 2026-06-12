@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Data;
+using System.Reflection;
 using BaseLib.Abstracts;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -17,7 +18,7 @@ public class AlwaysWhale : PikcubeRunModifierModel
     public override ModifierAlignment Alignment => ModifierAlignment.Good;
     public override int SortOrder => -999;
 
-    private List<EventOption> ModifierOptions { get; } = [];
+    private Dictionary<ulong, List<EventOption>> ModifierOptions { get; } = [];
     protected override void AfterRunCreated(RunState runState)
     {
         ModifierOptions.Clear();
@@ -34,11 +35,11 @@ public class AlwaysWhale : PikcubeRunModifierModel
 
     private void AlwaysWhalePatches_ModifyGenerateInitialOptions(object? sender, AlwaysWhalePatches.ModifyInitialArgs e)
     {
-        if (RunState.CurrentRoomCount > 1)
+        if (RunState.CurrentRoomCount > 1 || e.Neow.Owner is null)
         {
             return;
         }
-        ModifierOptions.Clear();
+        ModifierOptions[e.Neow.Owner.NetId] = [];
         foreach (ModifierModel modifier in RunState.Modifiers)
         {
             Func<Task>? option = modifier.GenerateNeowOption(e.Neow);
@@ -47,16 +48,16 @@ public class AlwaysWhale : PikcubeRunModifierModel
                 continue;
             }
 
-            int index = ModifierOptions.Count;
-            ModifierOptions.Add(new EventOption(e.Neow, () => OnChosen(option, index, e.Neow), modifier.NeowOptionTitle, modifier.NeowOptionDescription, modifier.Id.Entry, modifier.HoverTips));
+            int index = ModifierOptions[e.Neow.Owner.NetId].Count;
+            ModifierOptions[e.Neow.Owner.NetId].Add(new EventOption(e.Neow, () => OnChosen(option, index, e.Neow), modifier.NeowOptionTitle, modifier.NeowOptionDescription, modifier.Id.Entry, modifier.HoverTips));
         }
-        if (ModifierOptions.Count == 0)
+        if (ModifierOptions[e.Neow.Owner.NetId].Count == 0)
         {
             e.NewList = AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptionsWithoutModifiers(e.Neow);
             return;
         }
 
-        e.NewList = [ModifierOptions[0]];
+        e.NewList = [ModifierOptions[e.Neow.Owner.NetId][0]];
 
     }
 
@@ -66,14 +67,18 @@ public class AlwaysWhale : PikcubeRunModifierModel
 
         MethodInfo? method = AccessTools.DeclaredMethod(typeof(EventModel), "SetEventState", [typeof(LocString), typeof(IReadOnlyList<EventOption>)]);
 
+        if (neow.Owner is null)
+        {
+            throw new NoNullAllowedException();
+        }
 
-        if (index + 1 >= ModifierOptions.Count)
+        if (index + 1 >= ModifierOptions[neow.Owner.NetId].Count)
         {
             method.Invoke(neow, [neow.InitialDescription, AlwaysWhalePatches.NeowReverseOptionsPatch.GenerateInitialOptionsWithoutModifiers(neow)]);
         }
         else
         {
-            IReadOnlyList<EventOption> next = [ModifierOptions[index + 1]];
+            IReadOnlyList<EventOption> next = [ModifierOptions[neow.Owner.NetId][index + 1]];
             method.Invoke(neow, [neow.InitialDescription, next]);
         }
     }
