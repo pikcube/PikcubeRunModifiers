@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Data;
+using System.Reflection;
 using BaseLib.Abstracts;
 using HarmonyLib;
 using JetBrains.Annotations;
@@ -17,7 +18,7 @@ public class TheILoveVakuuModifier : PikcubeRunModifierModel
     public override ModifierAlignment Alignment => ModifierAlignment.Good;
 
     private Dictionary<ActModel, RunState> ActsToModify { get; } = [];
-    private List<EventOption> ModifierOptions { get; } = [];
+    private Dictionary<ulong, List<EventOption>> ModifierOptions { get; } = [];
     private Dictionary<ulong, IReadOnlyList<EventOption>> OriginalVakuuOptions { get; set; } = [];
 
     protected override void AfterRunCreated(RunState runState)
@@ -50,7 +51,13 @@ public class TheILoveVakuuModifier : PikcubeRunModifierModel
         {
             return;
         }
-        ModifierOptions.Clear();
+
+        if (e.Vakuu.Owner is null)
+        {
+            throw new NoNullAllowedException();
+        }
+
+        ModifierOptions[e.Vakuu.Owner.NetId] = [];
         foreach (ModifierModel modifier in RunState.Modifiers)
         {
             Func<Task>? option = modifier.GenerateNeowOption(e.Vakuu);
@@ -59,16 +66,16 @@ public class TheILoveVakuuModifier : PikcubeRunModifierModel
                 continue;
             }
 
-            int index = ModifierOptions.Count;
-            ModifierOptions.Add(new EventOption(e.Vakuu, () => OnChosen(option, index, e.Vakuu), modifier.NeowOptionTitle, modifier.NeowOptionDescription, modifier.Id.Entry, modifier.HoverTips));
+            int index = ModifierOptions[e.Vakuu.Owner.NetId].Count;
+            ModifierOptions[e.Vakuu.Owner.NetId].Add(new EventOption(e.Vakuu, () => OnChosen(option, index, e.Vakuu), modifier.NeowOptionTitle, modifier.NeowOptionDescription, modifier.Id.Entry, modifier.HoverTips));
         }
 
-        if (ModifierOptions.Count <= 0)
+        if (ModifierOptions[e.Vakuu.Owner.NetId].Count <= 0)
         {
             return;
         }
         OriginalVakuuOptions.Add(e.Vakuu.Owner!.NetId, e.NewList);
-        e.NewList = [ModifierOptions[0]];
+        e.NewList = [ModifierOptions[e.Vakuu.Owner.NetId][0]];
     }
 
     private async Task OnChosen(Func<Task> option, int index, Vakuu vakuu)
@@ -78,13 +85,18 @@ public class TheILoveVakuuModifier : PikcubeRunModifierModel
         MethodInfo? method = AccessTools.DeclaredMethod(typeof(EventModel), "SetEventState", [typeof(LocString), typeof(IReadOnlyList<EventOption>)]);
 
 
-        if (index + 1 >= ModifierOptions.Count)
+        if (vakuu.Owner is null)
+        {
+            throw new NoNullAllowedException();
+        }
+
+        if (index + 1 >= ModifierOptions[vakuu.Owner.NetId].Count)
         {
             method.Invoke(vakuu, [vakuu.InitialDescription, OriginalVakuuOptions[vakuu.Owner!.NetId]]);
         }
         else
         {
-            IReadOnlyList<EventOption> next = [ModifierOptions[index + 1]];
+            IReadOnlyList<EventOption> next = [ModifierOptions[vakuu.Owner.NetId][index + 1]];
             method.Invoke(vakuu, [vakuu.InitialDescription, next]);
         }
     }
