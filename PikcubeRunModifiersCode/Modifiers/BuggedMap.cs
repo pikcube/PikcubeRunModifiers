@@ -35,7 +35,7 @@ public class BuggedMap : PikcubeRunModifierModel
                     point.PointType = MapConfigMenu.EliteRooms.ToMapPoint();
                     break;
                 case MapPointType.Unassigned:
-            case MapPointType.Boss:
+                case MapPointType.Boss:
                 case MapPointType.Ancient:
                 default:
                     break;
