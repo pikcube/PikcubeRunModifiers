@@ -105,6 +105,7 @@
     <ItemGroup>
       <AdditionalFiles Remove="PikcubeRunModifiers\localization\eng\enchantments.json" />
       <AdditionalFiles Remove="PikcubeRunModifiers\localization\eng\modifiers.json" />
+      <AdditionalFiles Remove="PikcubeRunModifiers\localization\eng\settings_ui.json" />
     </ItemGroup>
 
     <ItemGroup>

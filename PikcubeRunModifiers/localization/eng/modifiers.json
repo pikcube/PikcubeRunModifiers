@@ -50,5 +50,7 @@
   "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.description": "Card rewards are replaced with the Crystal Ball event.",
   "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardGoldDescription": "Pay [blue]{Gold:diff()}[/blue] to Divine 3 times.",
   "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardDebtDescription": "Gain a [purple]{Curse:StringValue}[/purple] to Divine 6 times.",
-  "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardNopeDescription": "Skip Divining."
+  "PIKCUBERUNMODIFIERS-FORTUNE_FAVORS_THE_BOLD.rewardNopeDescription": "Skip Divining.",
+  "PIKCUBERUNMODIFIERS-BUGGED_MAP.title": "Bugged Map",
+  "PIKCUBERUNMODIFIERS-BUGGED_MAP.description": "Modify map generation based on the settings in the config menu."
 }
