@@ -9,11 +9,11 @@
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "v3.2.1"
+      "min_version": "v3.3.4"
     },
     {
       "id": "Pikcube.Common",
-      "min_version": "v0.2.6"
+      "min_version": "v0.3.3"
     }
   ],
   "affects_gameplay": true

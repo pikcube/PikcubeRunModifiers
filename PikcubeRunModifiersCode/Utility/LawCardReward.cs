@@ -12,8 +12,6 @@ using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Runs.History;
-using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Settings;
 using Pikcube.Common.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
@@ -76,9 +74,13 @@ public class LawCardReward(CardReward baseCardReward, CardModel target) : CardRe
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
         tween.TweenInterval(delayTimeBasedOnIndex);
-        tween.TweenCallback(Callable.From((Action)(() => { NRun.Instance.GlobalUi.AddChildSafely(NCardExhaustVfx.Create(nCard)!); })));
-        tween.TweenProperty(nCard, (NodePath)"modulate", StsColors.exhaustGray, 
-            SaveManager.Instance.PrefsSave.FastMode == FastModeType.Fast ? 0.20000000298023224 : 0.30000001192092896);
+        tween.TweenCallback(Callable.From(() =>
+        {
+            NCardExhaustVfx nCardExhaustVfx = NCardExhaustVfx.Create(nCard)!;
+            NRun.Instance.GlobalUi.AddChildSafely(nCardExhaustVfx);
+            return nCardExhaustVfx.PlayAnimation();
+        }));
+        tween.TweenProperty(nCard, (NodePath)"modulate", StsColors.exhaustGray, 0.7);
         tween.TweenCallback(Callable.From(nCard.QueueFree));
     }
 }
