@@ -37,10 +37,6 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 public class TheLaw : PikcubeRunModifierModel
 {
     public override ModifierAlignment Alignment => ModifierAlignment.Good;
-    static TheLaw()
-    {
-        SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));
-    }
 
     public static Func<CardModel, bool> Filter => (c => c.Rarity == CardRarity.Common);
 

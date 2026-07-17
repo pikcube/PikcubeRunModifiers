@@ -1,5 +1,4 @@
-﻿using System.Data;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -13,6 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.RelicPools;
+using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
@@ -21,6 +21,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using Pikcube.Common.Extensions;
 using Pikcube.Common.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
+using System.Data;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Relics;
 
@@ -31,7 +32,6 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
 
     static Gadget()
     {
-        SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(Gadget));
         BetterHooks.AfterRunInitialized += BetterHooks_AfterRunInitialized;
     }
 
@@ -289,7 +289,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
                 return;
             }
 
-            CardModel card = currentGadget.CreateDupe();
+            CardModel card = currentGadget.CreateDupe(currentGadget.Owner);
             card.AddKeyword(CardKeyword.Retain);
             if (!card.EnergyCost.CostsX && !card.HasStarCostX)
             {
@@ -313,7 +313,7 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
         }
 
         gadget?.Flash();
-        await CardCmd.AutoPlay(choiceContext, currentGadget.CreateDupe(), null);
+        await CardCmd.AutoPlay(choiceContext, currentGadget.CreateDupe(currentGadget.Owner), null);
     }
 
     private static CardModel? GetGadgetInfo(SerializableCard? currentGadgetBlueprint, Player owner,
