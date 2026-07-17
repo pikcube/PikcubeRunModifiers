@@ -12,7 +12,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.RelicPools;
-using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
@@ -68,8 +67,6 @@ public class Gadget : PikcubeRunModifiersRelic, IModifyHoverTipsListener, ICreat
             CardsPlayedThisCombat.Add(card, card);
         }
     }
-
-    private List<Task> PostLoadQueue { get; } = [];
 
     public static RelicModel Canonical => ModelDb.GetById<Gadget>(ModelDb.GetId<Gadget>()).CanonicalInstance;
 
