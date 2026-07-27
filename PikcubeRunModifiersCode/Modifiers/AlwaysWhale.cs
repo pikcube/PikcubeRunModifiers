@@ -15,6 +15,11 @@ namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 [UsedImplicitly]
 public class AlwaysWhale : PikcubeRunModifierModel
 {
+    //static AlwaysWhale()
+    //{
+    //    new RelicSpawnManager().RegisterRule<LeafyPoultice>(Predicates.UnlessModifierPresent<AlwaysWhale>);
+    //}
+
     public override ModifierAlignment Alignment => ModifierAlignment.Good;
     public override int SortOrder => -999;
 
