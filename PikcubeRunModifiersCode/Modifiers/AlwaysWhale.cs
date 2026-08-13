@@ -40,7 +40,7 @@ public class AlwaysWhale : PikcubeRunModifierModel
 
     private void AlwaysWhalePatches_ModifyGenerateInitialOptions(object? sender, AlwaysWhalePatches.ModifyInitialArgs e)
     {
-        if (RunState.CurrentRoomCount > 1 || e.Neow.Owner is null)
+        if (RunState.CurrentRoomCount > 1 || e.Neow.Owner is null || e.NewList.Count > 1)
         {
             return;
         }
