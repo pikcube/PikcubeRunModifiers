@@ -37,31 +37,33 @@ public static class AlwaysWhalePatches
             return args.NewList;
         }
     }
+}
 
-
-    [HarmonyPatch]
-    public static class NeowReverseOptionsPatch
+[HarmonyPatch]
+public static class NeowReverseOptionsPatch
+{
+    [HarmonyReversePatch]
+    [HarmonyPatch(typeof(Neow), "GenerateInitialOptions")]
+    public static IReadOnlyList<EventOption> GenerateInitialOptionsWithoutModifiers(object instance)
     {
-        [HarmonyReversePatch]
-        [HarmonyPatch(typeof(Neow), "GenerateInitialOptions")]
-        public static IReadOnlyList<EventOption> GenerateInitialOptionsWithoutModifiers(object instance)
+        //This body code is irrelevant since it'll get replaced by Harmony later
+
+        _ = instance;
+        _ = Transpiler(null!);
+        return [];
+
+        //Harmony will see that I have a transpiler defined, and use it to modify the incomming IL
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            _ = instance.GetType();
-            _ = Transpiler(null!);
-            return [];
+            CodeMatcher matcher = new(instructions);
 
-            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-            {
-                CodeMatcher matcher = new(instructions);
+            matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]));
+            matcher.ThrowIfInvalid("Could not find branch instruction");
+            object? operand = matcher.Instruction.operand;
+            matcher.RemoveInstruction();
+            matcher.InsertAndAdvance(new CodeInstruction(OpCodes.Blt, operand));
 
-                matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]));
-                matcher.ThrowIfInvalid("Could not find branch instruction");
-                object? operand = matcher.Instruction.operand;
-                matcher.RemoveInstruction();
-                matcher.InsertAndAdvance(new CodeInstruction(OpCodes.Blt, operand));
-
-                return matcher.Instructions();
-            }
+            return matcher.Instructions();
         }
     }
 }
