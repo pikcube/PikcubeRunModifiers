@@ -37,29 +37,31 @@ public static class AlwaysWhalePatches
             return args.NewList;
         }
     }
+}
 
-
-    [HarmonyPatch]
-    public static class NeowReverseOptionsPatch
+[HarmonyPatch]
+public static class NeowReverseOptionsPatch
+{
+    [HarmonyReversePatch]
+    [HarmonyPatch(typeof(Neow), "GenerateInitialOptions")]
+    public static IReadOnlyList<EventOption> GenerateInitialOptionsWithoutModifiers(object instance)
     {
-        [HarmonyReversePatch]
-        [HarmonyPatch(typeof(Neow), "GenerateInitialOptions")]
-        public static IReadOnlyList<EventOption> GenerateInitialOptionsWithoutModifiers(object instance)
-        {
-            _ = instance.GetType();
-            _ = Transpiler(null!);
-            return [];
+        //This body code is irrelevant since it'll get replaced by Harmony later
 
-            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-            {
-                CodeMatcher matcher = new(instructions);
+        _ = instance;
+        _ = Transpiler(null!);
+        return [];
+
+        //Harmony will see that I have a transpiler defined, and use it to modify the incomming IL
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            CodeMatcher matcher = new(instructions);
 
                 matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]))
                     .ThrowIfInvalid("Could not find branch instruction")
                     .SetOpcodeAndAdvance(OpCodes.Blt);
 
-                return matcher.Instructions();
-            }
+            return matcher.Instructions();
         }
     }
 }
