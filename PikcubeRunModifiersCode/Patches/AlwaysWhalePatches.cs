@@ -54,11 +54,9 @@ public static class AlwaysWhalePatches
             {
                 CodeMatcher matcher = new(instructions);
 
-                matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]));
-                matcher.ThrowIfInvalid("Could not find branch instruction");
-                object? operand = matcher.Instruction.operand;
-                matcher.RemoveInstruction();
-                matcher.InsertAndAdvance(new CodeInstruction(OpCodes.Blt, operand));
+                matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]))
+                    .ThrowIfInvalid("Could not find branch instruction")
+                    .SetOpcodeAndAdvance(OpCodes.Blt);
 
                 return matcher.Instructions();
             }
