@@ -8,7 +8,7 @@ using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
-namespace PikcubeRunModifiers;
+namespace PikcubeRunModifiers.PikcubeRunModifiersCode;
 
 [ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node
