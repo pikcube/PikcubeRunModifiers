@@ -3,7 +3,7 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
-using Pikcube.Common.Utility;
+using Pikcube.Common.Code.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;

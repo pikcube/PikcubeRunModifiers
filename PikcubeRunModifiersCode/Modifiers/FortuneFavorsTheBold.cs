@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
-using Pikcube.Common.Utility;
+using Pikcube.Common.Code.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Utility;
 

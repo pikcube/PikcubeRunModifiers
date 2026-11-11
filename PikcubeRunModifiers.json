@@ -3,7 +3,7 @@
   "name": "Pikcube's' Run Modifiers",
   "author": "Pikcube",
   "description": "Adds way too many custom run modifiers.",
-  "version": "v1.0.4",
+  "version": "v1.0.5",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
@@ -13,7 +13,7 @@
     },
     {
       "id": "Pikcube.Common",
-      "min_version": "v0.3.18"
+      "min_version": "v0.3.20"
     }
   ],
   "affects_gameplay": true

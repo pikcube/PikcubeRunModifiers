@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1" InitialTargets="CheckDependencyPaths">
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
+	    <LangVersion>15.0</LangVersion>
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -79,7 +80,7 @@
     <ItemGroup>
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.4.7" />
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1" />
-        <PackageReference Include="Pikcube.Common" Version="0.3.18" />
+        <PackageReference Include="Pikcube.Common" Version="0.3.20" />
         <AdditionalFiles Include="PikcubeRunModifiers/localization/**/*.json" />
     </ItemGroup>
 

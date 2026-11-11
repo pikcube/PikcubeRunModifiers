@@ -1,6 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Models;
-using Pikcube.Common.Extensions;
+using Pikcube.Common.Code.Extensions;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Modifiers;
 

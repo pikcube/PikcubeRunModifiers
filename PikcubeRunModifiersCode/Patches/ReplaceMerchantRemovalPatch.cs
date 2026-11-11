@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Runs;
-using Pikcube.Common.Utility;
+using Pikcube.Common.Code.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 

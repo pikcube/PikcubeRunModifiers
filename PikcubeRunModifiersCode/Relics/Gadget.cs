@@ -17,8 +17,8 @@ using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Saves.Runs;
-using Pikcube.Common.Extensions;
-using Pikcube.Common.Utility;
+using Pikcube.Common.Code.Extensions;
+using Pikcube.Common.Code.Utility;
 using PikcubeRunModifiers.PikcubeRunModifiersCode.Extensions;
 using System.Data;
 
