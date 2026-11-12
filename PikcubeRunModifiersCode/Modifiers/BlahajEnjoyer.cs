@@ -29,10 +29,10 @@ public class BlahajEnjoyer : PikcubeRunModifierModel
 
     private void ReplaceMerchantRemovalPatch_ModifyMerchantCardRemoval(object? sender, ModifyMerchantRemovalArgs e)
     {
-        e.NewMerchantRemoval = DoMerchantBottomSurgery(e.Player, e.GoldCost, e.Cancelable);
+        e.NewMerchantRemoval = DoMerchantBottomSurgery(e.Player, e.Cancelable);
     }
 
-    private static async Task<bool> DoMerchantBottomSurgery(Player player, int goldCost, bool cancelable = true)
+    private static async Task<bool> DoMerchantBottomSurgery(Player player, bool cancelable = true)
     {
         CardModel? card = (await CardSelectCmd.FromDeckForTransformation(player, new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1)
         {
@@ -41,7 +41,6 @@ public class BlahajEnjoyer : PikcubeRunModifierModel
         })).FirstOrDefault();
         if (card != null)
         {
-            await PlayerCmd.LoseGold(goldCost, player, GoldLossType.Spent);
             await CardCmd.Transform([new CardTransformation(card)], player.PlayerRng.Transformations);
             ++player.ExtraFields.CardShopRemovalsUsed;
         }

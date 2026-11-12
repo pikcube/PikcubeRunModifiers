@@ -76,25 +76,27 @@ public class TheLaw : PikcubeRunModifierModel
 
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        if (room is not MerchantRoom merchantRoom || !LawCardBlueprint.TryGetValue(merchantRoom.GetLocalInventory().Player.NetId, out SerializableCard? blueprint))
-        { 
-            return Task.CompletedTask;
-        }
-
-
-        if (merchantRoom.GetLocalInventory().Player.Relics.Any(r => r is LordsParasol))
+        foreach (Player player in RunManager.Instance.DebugOnlyGetState()?.Players ?? [])
         {
-            //I don't even want to try and figure out how these interact, and it's not like The Lords Parasol is ever going to not purchase the Law Card
-            return Task.CompletedTask;
+            if (room is not MerchantRoom merchantRoom || !LawCardBlueprint.TryGetValue(player.NetId, out SerializableCard? blueprint))
+            {
+                return Task.CompletedTask;
+            }
+
+
+            if (player.Relics.Any(r => r is LordsParasol))
+            {
+                //I don't even want to try and figure out how these interact, and it's not like The Lords Parasol is ever going to not purchase the Law Card
+                return Task.CompletedTask;
+            }
+
+            CardModel lawCard = CardModel.FromSerializable(blueprint ?? throw new NoNullAllowedException());
+
+            if (RunManager.Instance.MerchantSynchronizer.GetInventoryFor(player).CharacterCardEntries.Any(cardEntry => (cardEntry.CreationResult?.Card.CanonicalInstance == lawCard.CanonicalInstance) & cardEntry.EnoughGold))
+            {
+                TaskHelper.RunSafely(ForcePurchaseLawCard(RunManager.Instance.MerchantSynchronizer.GetInventoryFor(player), lawCard.CanonicalInstance));
+            }
         }
-
-        CardModel lawCard = CardModel.FromSerializable(blueprint ?? throw new NoNullAllowedException());
-
-        if (merchantRoom.GetLocalInventory().CharacterCardEntries.Any(cardEntry => (cardEntry.CreationResult?.Card.CanonicalInstance == lawCard.CanonicalInstance) & cardEntry.EnoughGold))
-        {
-            TaskHelper.RunSafely(ForcePurchaseLawCard(merchantRoom.GetLocalInventory(), lawCard.CanonicalInstance));
-        }
-
         return Task.CompletedTask;
     }
 
@@ -133,7 +135,7 @@ public class TheLaw : PikcubeRunModifierModel
                 }
                 else
                 {
-                    await characterCardEntry.OnTryPurchaseWrapper(inventory);
+                    await RunManager.Instance.MerchantSynchronizer.PurchaseLocalEntry(characterCardEntry);
                     await Cmd.Wait(0.25f);
                 }
             }
@@ -146,7 +148,7 @@ public class TheLaw : PikcubeRunModifierModel
                 }
                 else
                 {
-                    await colorlessCardEntry.OnTryPurchaseWrapper(inventory);
+                    await RunManager.Instance.MerchantSynchronizer.PurchaseLocalEntry(colorlessCardEntry);
                     await Cmd.Wait(0.25f);
                 }
             }

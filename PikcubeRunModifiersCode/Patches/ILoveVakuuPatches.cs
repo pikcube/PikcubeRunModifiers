@@ -2,8 +2,10 @@
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
+using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Unlocks;
 using Pikcube.Common.Code.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
@@ -22,10 +24,10 @@ public static class LoveVakuuPatches
         ModifyGenerateInitialOptions = null;
     }
 
-    [HarmonyPatch(typeof(ActModel), nameof(ActModel.GenerateRooms))]
+    [HarmonyPatch(typeof(ActModel), nameof(ActModel.GenerateRooms), typeof(Rng), typeof(UnlockState), typeof(bool), typeof(bool))]
     public static class AncientSpawnPatch
     {
-        public static void Postfix(ActModel __instance)
+        public static void Postfix(ActModel __instance, Rng rng, UnlockState unlockState, bool isMultiplayer = false, bool isBlitz = false)
         {
             RoomSet? rooms = Traverse.Create(__instance).Field<RoomSet>("_rooms").Value;
             if (!rooms.HasAncient)

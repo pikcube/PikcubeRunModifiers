@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using JetBrains.Annotations;
+using MegaCrit.Sts2.Core.Entities.Merchant;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Runs;
@@ -7,7 +8,7 @@ using Pikcube.Common.Code.Utility;
 
 namespace PikcubeRunModifiers.PikcubeRunModifiersCode.Patches;
 
-[HarmonyPatch(typeof(OneOffSynchronizer), "DoMerchantCardRemoval")]
+[HarmonyPatch(typeof(MerchantCardRemovalEntry), nameof(MerchantCardRemovalEntry.DoCardRemoval))]
 public static class ReplaceMerchantRemovalPatch
 {
     static ReplaceMerchantRemovalPatch()
@@ -21,12 +22,11 @@ public static class ReplaceMerchantRemovalPatch
     }
 
     [UsedImplicitly]
-    public static bool Prefix(ref Task<bool> __result, Player player, ref int goldCost, ref bool cancelable)
+    public static bool Prefix(ref Task<bool> __result, Player player, ref bool isCancelable)
     {
-        ModifyMerchantRemovalArgs args = new(__result, player, goldCost, cancelable);
+        ModifyMerchantRemovalArgs args = new(__result, player, isCancelable);
         ModifyMerchantCardRemoval?.Invoke(null, args);
-        goldCost = args.GoldCost;
-        cancelable = args.Cancelable;
+        isCancelable = args.Cancelable;
         __result = args.NewMerchantRemoval;
         return args.OriginalMerchantRemoval == args.NewMerchantRemoval;
     }
@@ -35,13 +35,11 @@ public static class ReplaceMerchantRemovalPatch
 
 }
 
-public class ModifyMerchantRemovalArgs(Task<bool> originalMerchantRemoval, Player player, int goldCost, bool cancelable)
+public class ModifyMerchantRemovalArgs(Task<bool> originalMerchantRemoval, Player player, bool cancelable)
 {
     public Task<bool> OriginalMerchantRemoval { get; } = originalMerchantRemoval;
     public Task<bool> NewMerchantRemoval { get; set; } = originalMerchantRemoval;
     public Player Player { get; } = player;
-
-    public int GoldCost { get; set; } = goldCost;
     public bool Cancelable { get; set; } = cancelable;
 
 }

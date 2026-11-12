@@ -57,9 +57,9 @@ public static class NeowReverseOptionsPatch
         {
             CodeMatcher matcher = new(instructions);
 
-                matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Bgt]))
+                matcher.MatchStartForward(CodeMatch.WithOpcodes([OpCodes.Ble_S]))
                     .ThrowIfInvalid("Could not find branch instruction")
-                    .SetOpcodeAndAdvance(OpCodes.Blt);
+                    .SetOpcodeAndAdvance(OpCodes.Bge_S);
 
             return matcher.Instructions();
         }
